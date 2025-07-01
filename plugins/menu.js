@@ -4,27 +4,21 @@ import config from '../config.cjs';
 
 const menu = async (m, sock) => {
   const prefix = config.PREFIX;
-  const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
-  const text = m.body.slice(prefix.length + cmd.length).trim();
 
-  if (cmd === "menu") {
+  if (m.body.startsWith(prefix + "menu")) {
     try {
       await sock.sendMessage(m.from, {
         react: { text: "🎀", key: m.key }
       });
 
-      // ✅ GitHub-hosted image URL
-      const imageUrl = 'https://raw.githubusercontent.com/Arslan-MD/Arslan-Ai-2.0/V-2/media/menu.jpg';
-
-      // Local paths for video & audio
       const videoPath = path.join(process.cwd(), 'media', 'menu.mp4');
       const audioPath = path.join(process.cwd(), 'media', 'menu.mp3');
+      const imageUrl = 'https://raw.githubusercontent.com/Arslan-MD/Arslan-Ai-2.0/V-2/media/menu.jpg';
 
       const caption = `
 ╭━━━[ *🤖 ARSLAN-AI-2.0 MENU 🤖* ]━━━╮
 ┃🎀 *Owner:* ArslanMD Official
 ┃⚡ *Version:* 2.0.0
-┃💠 *Power:* Ultrasonic Speed
 ┃🛠 *Prefix:* ${prefix}
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
 
@@ -39,32 +33,34 @@ const menu = async (m, sock) => {
 ┃👑 ${prefix}owner
 ┃📜 ${prefix}list
 ╰━━━━━━━━━━━━━━╯
-
-*🔘 Tap a button to explore*
 `.trim();
 
-      // ✅ 1. Send GitHub image + buttons
+      // ✅ 1. Send image separately
       await sock.sendMessage(m.from, {
         image: { url: imageUrl },
-        caption,
-        footer: "🎀 Arslan-Ai-2.0 Bot Menu",
+        caption: `🎀 *Welcome to Arslan-Ai-2.0!*`,
+      }, { quoted: m });
+
+      // ✅ 2. Send button message (as text)
+      await sock.sendMessage(m.from, {
+        text: caption,
+        footer: "🎀 Tap a button below to explore",
         buttons: [
           { buttonId: `${prefix}alive`, buttonText: { displayText: "✅ Bot Status" }, type: 1 },
           { buttonId: `${prefix}owner`, buttonText: { displayText: "👑 Owner" }, type: 1 },
           { buttonId: `${prefix}ai Hello`, buttonText: { displayText: "💬 Talk to AI" }, type: 1 }
         ],
-        headerType: 4
+        headerType: 1
       }, { quoted: m });
 
-      // ✅ 2. Send video (local)
+      // ✅ 3. Send video
       await sock.sendMessage(m.from, {
         video: fs.readFileSync(videoPath),
-        mimetype: 'video/mp4',
-        gifPlayback: false,
-        caption: '🎥 *Watch the full Arslan-Ai-2.0 experience!*'
+        caption: '🎥 *Watch Arslan-Ai-2.0 in Action!*',
+        gifPlayback: true
       }, { quoted: m });
 
-      // ✅ 3. Send audio (local)
+      // ✅ 4. Send audio (voice note)
       await sock.sendMessage(m.from, {
         audio: fs.readFileSync(audioPath),
         mimetype: 'audio/mp4',
@@ -73,7 +69,9 @@ const menu = async (m, sock) => {
 
     } catch (err) {
       console.error("❌ Menu error:", err);
-      await sock.sendMessage(m.from, { text: "❌ Error sending the menu." }, { quoted: m });
+      await sock.sendMessage(m.from, {
+        text: "❌ Error sending the menu. Please check your media files or URLs."
+      }, { quoted: m });
     }
   }
 };
