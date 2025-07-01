@@ -1,9 +1,9 @@
-//KING-SANDESH-MD config.js
+//Arslan-Ai-2.0 config.js
 const fs = require("fs");
 require("dotenv").config();
 
 const config = {
-  SESSION_ID: process.env.SESSION_ID || "ARSL~dv8kEIKC#5lPmXQc1ycm_usfgtbM2AGcYU_y4hnNXED6JUy5Mpes",
+  SESSION_ID: process.env.SESSION_ID || "ARSL~8rVFACBT#HTtEDa8ZAKzSbTMz9N2ZRE5uzt5DMJd7963hnqjyFRc",
   PREFIX: process.env.PREFIX || '.',
   BOT_NAME: process.env.BOT_NAME || "<| Arslan-Ai-2.0 𝐕❷🫧",
   BOT: process.env.BOT || "hello 👋",
@@ -15,7 +15,7 @@ const config = {
   ANTI_LEFT: process.env.ANTI_LEFT !== undefined ? process.env.ANTI_LEFT === 'true' : true,
   AUTOLIKE_EMOJI: process.env.AUTOLIKE_EMOJI || '💚',
   AUTO_REPLY_STATUS: process.env.AUTO_REPLY_STATUS !== undefined ? process.env.AUTO_REPLY_STATUS === 'false' : false,
-  STATUS_READ_MSG: process.env.STATUS_READ_MSG || 'Status Viewed by KING-SANDESH-MD',
+  STATUS_READ_MSG: process.env.STATUS_READ_MSG || 'Status Viewed by Arslan-MD Powerfull Whatsapp Bot',
   VOICE_CHAT_BOT: process.env.VOICE_CHAT_BOT !== undefined ? process.env.VOICE_CHAT_BOT === 'true' : false,
   ANTILINK: process.env.ANTILINK !== undefined ? process.env.ANTILINK === 'false' : false,
   AUTO_STICKER: process.env.AUTO_STICKER !== undefined ? process.env.AUTO_STICKER === 'false' : false,
