@@ -8,132 +8,73 @@ const menu = async (m, sock) => {
   const text = m.body.slice(prefix.length + cmd.length).trim();
 
   if (cmd === "menu") {
-    const start = new Date().getTime();
-
     try {
       await sock.sendMessage(m.from, {
-        react: {
-          text: "🎀",
-          key: m.key
-        }
+        react: { text: "🎀", key: m.key }
       });
-    } catch {}
 
-    const end = new Date().getTime();
-    const responseTime = (end - start) / 1000;
+      // ✅ GitHub-hosted image URL
+      const imageUrl = 'https://raw.githubusercontent.com/Arslan-MD/Arslan-Ai-2.0/V-2/media/menu.jpg';
 
-    const menuText = `
-═══════════════════════
-> 🌟 *𝔸𝕣𝕤𝕝𝕒𝕟-𝔸𝕚-𝟚.𝟘* 🌟
-> *Version*: 2.0.0 |
-*✷🎀 𝒟𝑒𝓋𝑒𝓁♡𝓅𝑒𝒹 𝒷𝓎 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 🎀✷*
-> *ULTRA POWERFUL AND SPEED⚡
-═══════════════════════
+      // Local paths for video & audio
+      const videoPath = path.join(process.cwd(), 'media', 'menu.mp4');
+      const audioPath = path.join(process.cwd(), 'media', 'menu.mp3');
 
-_✨ *𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨* ✨_
-> *Explore the commands below to harness the bot's full power!*
+      const caption = `
+╭━━━[ *🤖 ARSLAN-AI-2.0 MENU 🤖* ]━━━╮
+┃🎀 *Owner:* ArslanMD Official
+┃⚡ *Version:* 2.0.0
+┃💠 *Power:* Ultrasonic Speed
+┃🛠 *Prefix:* ${prefix}
+╰━━━━━━━━━━━━━━━━━━━━━━╯
 
-═══════════════════════
-   🌍  *𝗦𝗬𝗦𝗧𝗘𝗠 𝗠𝗘𝗡𝗨* 🌍
-═══════════════════════
-| ⚡ | ${prefix}menu
-| 🟢 | ${prefix}alive
-| 🛠️ | ${prefix}owner
-| 🍔 | ${prefix}list
-═══════════════════════
+╭━🧠 *GPT MENU*━╮
+┃💬 ${prefix}ai
+┃🧠 ${prefix}gpt
+┃📝 ${prefix}report
+╰━━━━━━━━━━━━━━╯
 
-═══════════════════════
-   👑  *𝗢𝗪𝗡𝗘𝗥 𝗠𝗘𝗡𝗨* 👑
-═══════════════════════
-| 🎮 | ${prefix}join
-| 🚪 | ${prefix}leave
-| 🩷 | ${prefix}autobio
-| 🔒 | ${prefix}block
-| 🧋 | ${prefix}autolikestatus
-| 🔓 | ${prefix}unblock
-| 🤖 | ${prefix}antidelete on
-| 🚫 | ${prefix}anticall
-| 🛑 | ${prefix}settings
-| 📝 | ${prefix}setname
-═══════════════════════
+╭━🔧 *SYSTEM MENU*━╮
+┃⚡ ${prefix}alive
+┃👑 ${prefix}owner
+┃📜 ${prefix}list
+╰━━━━━━━━━━━━━━╯
 
-═══════════════════════
-  🤖  *𝗚𝗣𝗧 𝗠𝗘𝗡𝗨* 🤖
-═══════════════════════
-| 💬 | ${prefix}ai
-| 🐞 | ${prefix}bug
-| 📝 | ${prefix}report
-| 🚪 | ${prefix}chatbot
-| 🧠 | ${prefix}gpt
-| 🎨 | ${prefix}xeon
-═══════════════════════
-
-═══════════════════════
-  📦  *𝗖𝗢𝗡𝗩𝗘𝗥𝗧𝗘𝗥 𝗣𝗔𝗚𝗘* 📦
-═══════════════════════
-| 🎶 | ${prefix}attp
-| 🎬 | ${prefix}gimage
-| 🎧 | ${prefix}play
-| 📹 | ${prefix}video
-═══════════════════════
-
-═══════════════════════
-   🔍  *𝗦𝗘𝗔𝗥𝗖𝗛 𝗠𝗘𝗡𝗨* 🔍
-═══════════════════════
-| 🔎 | ${prefix}google
-| 📽️ | ${prefix}mediafire
-| 🚪 | ${prefix}facebook
-| ❤️ | ${prefix}instagram
-| 🚪 | ${prefix}tiktok
-| 🎶 | ${prefix}lyrics
-| 🎬 | ${prefix}imdb
-| 🔞 | ${prefix}hwaifu/sex/xxx
-═══════════════════════
-
-═══════════════════════
-   🔍  *𝗙𝗨𝗡 𝗠𝗘𝗡𝗨* 🔍
-═══════════════════════
-| 🔎 | ${prefix}getpp
-| 📽️ | ${prefix}url
-| 😂 | ${prefix}roast
-═══════════════════════
-
-
-🔧 *Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴍᴇɴᴜ!*
-*ᴡᴀɪᴛ ғᴏʀ ᴍᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅs...*
-
-📢 *ᴅᴇᴠᴇʟᴏᴘᴇʀ* ▌│█║▌║▌║   🎀  𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 🍑𝒻𝒻𝒾𝒸𝒾𝒶𝓁  🎀   ║▌║▌║█│▌
+*🔘 Tap a button to explore*
 `.trim();
 
-    // 🎥 Local media folder path
-    const videoPath = path.join(process.cwd(), 'media', 'menu.mp4');
-    const audioPath = path.join(process.cwd(), 'media', 'menu.mp3');
+      // ✅ 1. Send GitHub image + buttons
+      await sock.sendMessage(m.from, {
+        image: { url: imageUrl },
+        caption,
+        footer: "🎀 Arslan-Ai-2.0 Bot Menu",
+        buttons: [
+          { buttonId: `${prefix}alive`, buttonText: { displayText: "✅ Bot Status" }, type: 1 },
+          { buttonId: `${prefix}owner`, buttonText: { displayText: "👑 Owner" }, type: 1 },
+          { buttonId: `${prefix}ai Hello`, buttonText: { displayText: "💬 Talk to AI" }, type: 1 }
+        ],
+        headerType: 4
+      }, { quoted: m });
 
-    // 🎥 Send local video with caption
-    await sock.sendMessage(m.from, {
-      video: fs.readFileSync(videoPath),
-      caption: menuText,
-      gifPlayback: true,
-      contextInfo: {
-        forwardingScore: 999,
-        isForwarded: true,
-        externalAdReply: {
-          title: "Arslan-Ai-2.0 Menu",
-          body: "Tap to explore",
-          mediaType: 2,
-          previewType: "VIDEO",
-          renderLargerThumbnail: true,
-          sourceUrl: "https://github.com/Arslan-MD/Arslan-Ai-2.0"
-        }
-      }
-    }, { quoted: m });
+      // ✅ 2. Send video (local)
+      await sock.sendMessage(m.from, {
+        video: fs.readFileSync(videoPath),
+        mimetype: 'video/mp4',
+        gifPlayback: false,
+        caption: '🎥 *Watch the full Arslan-Ai-2.0 experience!*'
+      }, { quoted: m });
 
-    // 🔊 Send local audio (voice note)
-    await sock.sendMessage(m.from, {
-      audio: fs.readFileSync(audioPath),
-      mimetype: 'audio/mp4',
-      ptt: true
-    }, { quoted: m });
+      // ✅ 3. Send audio (local)
+      await sock.sendMessage(m.from, {
+        audio: fs.readFileSync(audioPath),
+        mimetype: 'audio/mp4',
+        ptt: true
+      }, { quoted: m });
+
+    } catch (err) {
+      console.error("❌ Menu error:", err);
+      await sock.sendMessage(m.from, { text: "❌ Error sending the menu." }, { quoted: m });
+    }
   }
 };
 
