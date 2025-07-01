@@ -4,22 +4,27 @@ import config from '../config.cjs';
 
 const menu = async (m, sock) => {
   const prefix = config.PREFIX;
+  const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
+  const text = m.body.slice(prefix.length + cmd.length).trim();
 
-  if (m.body.startsWith(prefix + "menu")) {
+  if (cmd === "menu") {
     try {
+      // 🎀 React
       await sock.sendMessage(m.from, {
         react: { text: "🎀", key: m.key }
       });
 
+      // 📂 Paths for video and audio
       const videoPath = path.join(process.cwd(), 'media', 'menu.mp4');
       const audioPath = path.join(process.cwd(), 'media', 'menu.mp3');
 
-      if (!fs.existsSync(videoPath)) throw new Error("menu.mp4 not found");
-      if (!fs.existsSync(audioPath)) throw new Error("menu.mp3 not found");
+      if (!fs.existsSync(videoPath)) throw new Error("❌ menu.mp4 not found");
+      if (!fs.existsSync(audioPath)) throw new Error("❌ menu.mp3 not found");
 
       const videoBuffer = fs.readFileSync(videoPath);
       const audioBuffer = fs.readFileSync(audioPath);
 
+      // 📋 Menu text
       const menuText = `
 ═══════════════════════
 > 🌟 *𝔸𝕣𝕤𝕝𝕒𝕟-𝔸𝕚-𝟚.𝟘* 🌟
@@ -103,16 +108,22 @@ _✨ *𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨* ✨_
 📢 *ᴅᴇᴠᴇʟᴏᴘᴇʀ* ▌│█║▌║▌║ ▌│█║▌║▌║   🎀  𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 🎀║▌║▌║█│▌
 `.trim();
 
-      // 🎥 Send video (with caption)
+      // 🎥 Send local video with caption (NO gifPlayback)
       await sock.sendMessage(m.from, {
         video: videoBuffer,
-        caption: "🎀 *ARSLAN-AI-2.0* - Your Smart Assistant!",
-        gifPlayback: true
-      }, { quoted: m });
-
-      // 💬 Send menu text
-      await sock.sendMessage(m.from, {
-        text: menuText
+        caption: menuText,
+        contextInfo: {
+          forwardingScore: 999,
+          isForwarded: true,
+          externalAdReply: {
+            title: "Arslan-Ai-2.0 Menu",
+            body: "Tap to explore",
+            mediaType: 2,
+            previewType: "VIDEO",
+            renderLargerThumbnail: true,
+            sourceUrl: "https://github.com/Arslan-MD/Arslan-Ai-2.0"
+          }
+        }
       }, { quoted: m });
 
       // 🔊 Send audio voice note
