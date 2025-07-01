@@ -1,13 +1,13 @@
-const ping = async (sock, m, sender, text) => {
-    try {
-        const jid = m?.key?.remoteJid || sender;
-        await sock.sendMessage(jid, {
-            text: `🏓 Pong! Bot is alive, ${sender.split('@')[0]} ✅`
-        }, { quoted: m });
-    } catch (err) {
-        console.error("❌ Ping command error:", err);
-    }
-};
+// File: plugins/ping.js
 
-export const command = ['ping'];
-export const handler = ping;
+export default async function ping(m, sock) {
+  try {
+    await sock.sendMessage(
+      m.from,
+      { text: `🏓 Pong! Bot is Alive ✅` },
+      { quoted: m }
+    );
+  } catch (err) {
+    console.error("❌ Ping command failed:", err);
+  }
+}
