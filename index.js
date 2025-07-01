@@ -117,28 +117,28 @@ Matrix.ev.on('connection.update', (update) => {
         if (initialConnection) {
             console.log(chalk.green("Connected Successfully Arslan-Ai-2.0 🤍"));
             Matrix.sendMessage(Matrix.user.id, { 
-                image: { url: "https://imgur.com/a/jgZN1dp" }, 
+                image: { url: "https://files.catbox.moe/2bhefn.png" }, 
                 caption: `> 𝐂ᴏɴɴᴇᴄᴛᴇ𝐃 𝐒ᴜᴄᴄᴇꜱꜱꜰᴜʟʟ𝐘 🩷🎀 .
 ╭───❍「 *𝐂ᴏɴɴᴇᴄᴛᴇ𝐃 𝐁ᴏᴛ* 」
-┃ <| 𝐊𝐈𝐍𝐆-𝐒𝐀𝐍𝐃𝐄𝐒𝐇-𝐌𝐃 𝐕❷🫧
+┃ ꧁𓊈𒆜🅰🆁🆂🅻🅰🅽-🅰🅸-2.0𒆜𓊉꧂🫧
 ╰───────────❍
 ╭───❍「 *𝐁ᴏᴛ 𝐖ᴇʙ 𝐏ᴀɢᴇ* 」
-┃ [**Here**](https://king-sandesh-md-ofc-web.pages.dev/) visit web...!
+┃ [**Here**](https://arslanmdofficial.kesug.com/) visit web...!
 ╰───────────❍
 ╭───❍「 *𝐉ᴏɪɴ 𝐂ʜᴀɴɴᴇ𝐋* 」
-┃ [**Here**](https://whatsapp.com/channel/0029Vb5saAU4Y9lfzhgBmS2N) to join..!
+┃ [**Here**](https://whatsapp.com/channel/0029VarfjW04tRrmwfb8x306) to join..!
 ╰───────────❍
 ╭───❍「 *𝐁ᴏᴛ 𝐎ᴡɴᴇ𝐑* 」
 ┃ 𝐌𝐑 .𝐒ᴀɴᴅᴇꜱ𝐇 𝐁ʜᴀꜱʜᴀɴ𝐀
 ╰───────────❍
 ╭───❍「 *𝐒ʏꜱᴛᴇᴍ 𝐒ᴛᴀᴛᴜꜱ* 」
-┃ ░░░░░░░░░░░░░░░░░░░ 100%
+┃ ░░░░░░░░░░░░░░░░ 100%
 ╰───────────❍
-╭───❍「 *𝐁ᴏᴛ 𝐏ʀᴇꜰɪ𝐱* 」
+╭───❍「 *𝐁ᴏᴛ 𝐏ʀᴇꜰɪ𝐱*」 
 ┃ 𝐂ᴏɴꜰɪɢᴜʀ𝐄 𝐘ᴏᴜʀ 𝐏ʀᴇꜰɪ𝐗 ${prefix}
 ╰───────────❍
-╭───❍「 *𝐀ᴜᴛᴏᴍᴀᴛɪᴏ𝐍 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ* 」
-┃ 𝐊ɪɴɢ 𝐒ᴀɴᴅᴇꜱʜ 𝐌ᴅ 𝐕❷
+╭─❍「 *𝐀ᴜᴛᴏᴍᴀᴛɪᴏ𝐍 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ*」 
+┃ 𝘼𝙧𝙨𝙡𝙖𝙣𝙈𝘿 𝙊𝙛𝙛𝙞𝙘𝙞𝙖𝙡☠️
 ╰───────────❍`
             });
             initialConnection = false;
