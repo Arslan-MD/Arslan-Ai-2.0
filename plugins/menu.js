@@ -28,9 +28,9 @@ const menu = async (m, sock) => {
       const menuText = `
 ═══════════════════════
 > 🌟 *𝔸𝕣𝕤𝕝𝕒𝕟-𝔸𝕚-𝟚.𝟘* 🌟
-> *Version*: 2.0.0 |
-> *✷🎀 𝒟𝑒𝓋𝑒𝓁♡𝓅𝑒𝒹 𝒷𝓎 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 🎀✷*
-> *ULTRASONIC POWER AND SPEED ⚡
+> *Version*: 2.0.0* |
+> 🎀 *𝒟𝑒𝓋𝑒𝓁♡𝓅𝑒𝒹 𝒷𝓎 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟* 🎀
+> *ULTRA POWERFULL AND SPEED ⚡
 ═══════════════════════
 
 _✨ *𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨* ✨_
@@ -110,21 +110,23 @@ _✨ *𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨* ✨_
 
       // 🎥 Send local video with caption (NO gifPlayback)
       await sock.sendMessage(m.from, {
-        video: videoBuffer,
-        caption: menuText,
-        contextInfo: {
-          forwardingScore: 999,
-          isForwarded: true,
-          externalAdReply: {
-            title: "Arslan-Ai-2.0 Menu",
-            body: "Tap to explore",
-            mediaType: 2,
-            previewType: "VIDEO",
-            renderLargerThumbnail: true,
-            sourceUrl: "https://github.com/Arslan-MD/Arslan-Ai-2.0"
-          }
-        }
-      }, { quoted: m });
+  video: fs.readFileSync(videoPath),
+  caption: menuText,
+  gifPlayback: false, // ensure real video
+  contextInfo: {
+    forwardingScore: 999,
+    isForwarded: true,
+    externalAdReply: {
+      title: "Arslan-Ai-2.0 Menu",
+      body: "Your Smart Bot is Here!",
+      mediaType: 2,
+      previewType: "VIDEO",
+      renderLargerThumbnail: true,
+      sourceUrl: "https://github.com/Arslan-MD/Arslan-Ai-2.0",
+      thumbnailUrl: "https://raw.githubusercontent.com/Arslan-MD/Arslan-Ai-2.0/V-2/media/menu.jpg" // GitHub logo ya bot ka thumbnail
+    }
+  }
+}, { quoted: m });
 
       // 🔊 Send audio voice note
       await sock.sendMessage(m.from, {
