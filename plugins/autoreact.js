@@ -2,8 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import config from '../config.cjs';
 
-const __dirname = path.resolve();
-const configPath = path.join(__dirname, 'src', 'config.cjs');
+const configPath = path.resolve('./config.cjs');
 
 const autoreactCommand = async (m, Matrix) => {
   const botNumber = await Matrix.decodeJid(Matrix.user.id);
@@ -12,36 +11,38 @@ const autoreactCommand = async (m, Matrix) => {
   const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
   const text = m.body.slice(prefix.length + cmd.length).trim();
 
-  if (cmd === 'autoreact') {
-    if (!isCreator) {
-      await Matrix.sendMessage(m.from, { text: "*📛 THIS IS AN OWNER COMMAND*" }, { quoted: m });
-      return;
-    }
+  if (cmd !== 'autoreact') return;
 
-    let responseMessage = '';
-    if (text === 'on' || text === 'off') {
-      const value = text === 'on';
-      config.AUTO_REACT = value;
+  if (!isCreator) {
+    return await Matrix.sendMessage(m.from, {
+      text: "*📛 THIS IS AN OWNER COMMAND*"
+    }, { quoted: m });
+  }
 
-      try {
-        const content = fs.readFileSync(configPath, 'utf-8');
-        const updatedContent = content.replace(
-          /AUTO_REACT: process\.env\.AUTO_REACT !== undefined \? process\.env\.AUTO_REACT === 'false' : (true|false),/,
-          `AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'false' : ${value},`
-        );
+  if (!['on','off'].includes(text)) {
+    return await Matrix.sendMessage(m.from, {
+      text: `🌩️ Usage:\n${prefix}autoreact on\n${prefix}autoreact off`
+    }, { quoted: m });
+  }
 
-        fs.writeFileSync(configPath, updatedContent, 'utf-8');
-        responseMessage = `✅ AUTO_REACT has been turned *${text.toUpperCase()}*.`;
+  const value = (text === 'on');
+  config.AUTO_REACT = value;
 
-      } catch (err) {
-        console.error('Error updating config.cjs:', err);
-        responseMessage = '❌ Failed to update AUTO_REACT in config.';
-      }
-    } else {
-      responseMessage = `🌩️ Usage:\n- *${prefix}autoreact on*\n- *${prefix}autoreact off*`;
-    }
-
-    await Matrix.sendMessage(m.from, { text: responseMessage }, { quoted: m });
+  try {
+    let content = fs.readFileSync(configPath, 'utf8');
+    content = content.replace(
+      /AUTO_REACT: process\.env\.AUTO_REACT !== undefined \? process\.env\.AUTO_REACT === 'false' : (true|false),/,
+      `AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'false' : ${value},`
+    );
+    fs.writeFileSync(configPath, content, 'utf8');
+    await Matrix.sendMessage(m.from, {
+      text: `✅ AUTO_REACT turned *${text.toUpperCase()}*`
+    }, { quoted: m });
+  } catch (e) {
+    console.error('Error writing config.cjs', e);
+    await Matrix.sendMessage(m.from, {
+      text: '❌ Failed to write config.cjs'
+    }, { quoted: m });
   }
 };
 
