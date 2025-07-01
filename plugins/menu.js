@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import config from '../config.cjs';
 
 const menu = async (m, sock) => {
@@ -8,7 +10,6 @@ const menu = async (m, sock) => {
   if (cmd === "menu") {
     const start = new Date().getTime();
 
-    // Optional emoji react (fallback in case m.React fails)
     try {
       await sock.sendMessage(m.from, {
         react: {
@@ -21,18 +22,12 @@ const menu = async (m, sock) => {
     const end = new Date().getTime();
     const responseTime = (end - start) / 1000;
 
-    let profilePictureUrl = 'https://files.catbox.moe/og4tsk.jpg';
-    try {
-      const pp = await sock.profilePictureUrl(m.sender, 'image');
-      if (pp) profilePictureUrl = pp;
-    } catch {}
-
     const menuText = `
 ═══════════════════════
 > 🌟 *𝔸𝕣𝕤𝕝𝕒𝕟-𝔸𝕚-𝟚.𝟘* 🌟
 > *Version*: 2.0.0 |
-*✷  🎀  𝒟𝑒𝓋𝑒𝓁♡𝓅𝑒𝒹 𝒷𝓎 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 💍🎀  ✷*
-> *ULTRASONIC POWER AND SPEED ⚡
+*✷🎀 𝒟𝑒𝓋𝑒𝓁♡𝓅𝑒𝒹 𝒷𝓎 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 🎀✷*
+> *ULTRA POWERFUL AND SPEED⚡
 ═══════════════════════
 
 _✨ *𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨* ✨_
@@ -110,22 +105,34 @@ _✨ *𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨* ✨_
 📢 *ᴅᴇᴠᴇʟᴏᴘᴇʀ* ▌│█║▌║▌║   🎀  𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 🍑𝒻𝒻𝒾𝒸𝒾𝒶𝓁  🎀   ║▌║▌║█│▌
 `.trim();
 
+    // 🎥 Local media folder path
+    const videoPath = path.join(process.cwd(), 'media', 'menu.mp4');
+    const audioPath = path.join(process.cwd(), 'media', 'menu.mp3');
+
+    // 🎥 Send local video with caption
     await sock.sendMessage(m.from, {
-      image: { url: profilePictureUrl },
+      video: fs.readFileSync(videoPath),
       caption: menuText,
+      gifPlayback: true,
       contextInfo: {
         forwardingScore: 999,
         isForwarded: true,
         externalAdReply: {
           title: "Arslan-Ai-2.0 Menu",
           body: "Tap to explore",
-          mediaType: 1,
-          previewType: "PHOTO",
-          thumbnailUrl: profilePictureUrl,
+          mediaType: 2,
+          previewType: "VIDEO",
           renderLargerThumbnail: true,
           sourceUrl: "https://github.com/Arslan-MD/Arslan-Ai-2.0"
         }
       }
+    }, { quoted: m });
+
+    // 🔊 Send local audio (voice note)
+    await sock.sendMessage(m.from, {
+      audio: fs.readFileSync(audioPath),
+      mimetype: 'audio/mp4',
+      ptt: true
     }, { quoted: m });
   }
 };
