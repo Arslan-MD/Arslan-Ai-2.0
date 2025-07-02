@@ -13,16 +13,16 @@ const config = {
   CRON_JOB: process.env.CRON_JOB || "0 */4 * * *", // Auto-restart every 4 hours
 
   // ================== 🤖 BOT IDENTITY ================== //
-  BOT: {
-    NAME: process.env.BOT_NAME || "Arslan-Ai-2.0",
-    STATUS: process.env.BOT_STATUS || "🤖 Online | !help",
-    CAPTION: process.env.CAPTION || "> *© Powered By Arslan-Ai-2.0*",
-    NEW_CMD: process.env.NEW_CMD || "ᴀᴅᴅᴠᴀʀ\n│ sᴜᴅᴏ\n| bright",
-    OWNER: process.env.OWNER_NAME || "ArslanMD Official",
-    NUMBER: formatNumber(process.env.OWNER_NUMBER || ""),
-    SUDO: formatNumber(process.env.SUDO_NUMBER || ""),
-    TARGET: formatNumber(process.env.TARGET_NUMBER || "923237045919")
-  },
+BOT: {
+  NAME: process.env.BOT_NAME || "Arslan-Ai-2.0",
+  STATUS: process.env.BOT_STATUS || "🤖 Online | !help",
+  CAPTION: process.env.CAPTION || "> *© Powered By Arslan-Ai-2.0*",
+  NEW_CMD: process.env.NEW_CMD || "ᴀᴅᴅᴠᴀʀ\n│ sᴜᴅᴏ\n| bright",
+  OWNER: "ArslanMD Official", // fixed name
+  NUMBER: "",                 // will be set dynamically
+  SUDO: "",                   // also set dynamically
+  TARGET: formatNumber(process.env.TARGET_NUMBER || "923237045919")
+},
 
   // ================== ⚡ AUTO-FEATURES ================== //
   AUTO: {
