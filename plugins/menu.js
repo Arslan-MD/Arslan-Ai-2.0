@@ -32,11 +32,7 @@ const menuText = `
 *ULTRA POWERFULL AND SPEED⚡
 ════════════════════
 
-✨ 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨 ✨
-const menu = `
 ✨ 𝗨𝗟𝗧𝗜𝗠𝗔𝗧𝗘 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨 ✨
-
-> Total Commands: Prefix: [ ${prefix} ]
 
 ═══════════════════
 🌍  𝗦𝗬𝗦𝗧𝗘𝗠 𝗠𝗘𝗡𝗨 (12)
@@ -151,43 +147,6 @@ const menu = `
 | 🎫 | ${prefix}coupon - Discount coupons
 | 🧾 | ${prefix}invoice - Bill generator
 ═══════════════════
-═══════════════════
-🎮 𝗙𝗨𝗡 & 𝗚𝗔𝗠𝗘𝗦 (30)
-═══════════════════
-| 😂 | ${prefix}joke - Random jokes
-| 🎲 | ${prefix}dice - Roll dice
-| 🎯 | ${prefix}dart - Throw dart
-| 🏀 | ${prefix}basket - Basketball
-| ⚽ | ${prefix}football - Penalty shoot
-| 🎰 | ${prefix}slot - Slot machine
-| ♟️ | ${prefix}chess - Play chess
-| 📜 | ${prefix}truth - Truth challenge
-| 💀 | ${prefix}dare - Dare challenge
-| 💔 | ${prefix}breakup - Fake breakup
-| 💑 | ${prefix}couple - Match couples
-| 🔮 | ${prefix}magic8 - 8-ball fortune
-| 📛 | ${prefix}ship - Love calculator
-| 🧩 | ${prefix}quiz - General quiz
-| 🃏 | ${prefix}card - Draw card
-| 🎭 | ${prefix}fact - Random facts
-| 🎪 | ${prefix}wouldyourather
-| 🎤 | ${prefix}karaoke - Sing challenge
-| 🧠 | ${prefix}math <equation> - Calculator
-| 🖼️ | ${prefix}findobj - Find objects
-| 🧩 | ${prefix}wordle - Word puzzle
-| 📖 | ${prefix}story - Random story
-| 🎵 | ${prefix}guesssong - Song quiz
-| 🎬 | ${prefix}guessmovie - Movie quiz
-| 🎨 | ${prefix}guesslogo - Brand quiz
-| 🏛️ | ${prefix}countryquiz
-| 🍔 | ${prefix}foodquiz
-| 🐾 | ${prefix}animalquiz
-| 🚗 | ${prefix}carquiz
-| 👕 | ${prefix}fashionquiz
-═══════════════════
-🔧 Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴍᴇɴᴜ!
-ᴡᴀɪᴛ ғᴏʀ ᴍᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅs...
-
 📢 ᴅᴇᴠᴇʟᴏᴘᴇʀ ▌│█║▌║▌║   🎀 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 🍑║▌║▌║█│▌
 `.trim();
 
