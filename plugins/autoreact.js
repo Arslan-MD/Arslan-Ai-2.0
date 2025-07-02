@@ -6,7 +6,12 @@ const configPath = path.resolve('./config.cjs');
 
 const autoreactCommand = async (m, Matrix) => {
   const botNumber = await Matrix.decodeJid(Matrix.user.id);
-  const isCreator = [botNumber, config.OWNER_NUMBER + '@s.whatsapp.net'].includes(m.sender);
+  const allowed = [
+    config.OWNER_NUMBER,
+    ...(config.SUDO_NUMBER?.split(',') || [])
+  ].map(n => n.replace(/\D/g, '') + '@s.whatsapp.net');
+
+  const isCreator = allowed.includes(m.sender);
   const prefix = config.PREFIX;
   const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
   const text = m.body.slice(prefix.length + cmd.length).trim();
@@ -15,7 +20,7 @@ const autoreactCommand = async (m, Matrix) => {
 
   if (!isCreator) {
     return await Matrix.sendMessage(m.from, {
-      text: "*📛 THIS IS AN OWNER COMMAND*"
+      text: "*📛 THIS IS AN OWNER/ADMIN COMMAND*"
     }, { quoted: m });
   }
 
