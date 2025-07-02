@@ -34,119 +34,128 @@ const menuText = `
 
 ✨ 𝗨𝗟𝗧𝗜𝗠𝗔𝗧𝗘 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨 ✨
 
-═══════════════════
-🌍  𝗦𝗬𝗦𝗧𝗘𝗠 𝗠𝗘𝗡𝗨 (12)
-═══════════════════
-| ⚡ | ${prefix}menu - All commands
-| 🟢 | ${prefix}alive - Bot status
-| 🛠️ | ${prefix}owner - Contact owner
-| 📊 | ${prefix}stats - Bot analytics
-| 🍔 | ${prefix}list - Command list
-| 🔄 | ${prefix}restart - Restart bot
-| 📝 | ${prefix}sc - Source code
-| 🚀 | ${prefix}speed - Bot speed test
-| 🔍 | ${prefix}ping - Check latency
-| 💾 | ${prefix}backup - Backup data
-| 📛 | ${prefix}reportbug - Report issues
-| 🔐 | ${prefix}term - Termux setup guide
-═══════════════════
+┆ ◦  🏃 nikal
+┆ ◦  🤲 hold
+┆ ◦  🤗 hug
+┆ ◦  🏃 nikal
+┆ ◦  🎵 hifi
+┆ ◦  👉 poke
+┆ ◦ 
+╰─┈⊷
 
-═══════════════════
-👑  𝗢𝗪𝗡𝗘𝗥 𝗠𝗘𝗡𝗨 (18)
-═══════════════════
-| 🎮 | ${prefix}join <link> - Join group
-| 🚪 | ${prefix}leave - Exit group
-| 🩷 | ${prefix}autobio on/off - Auto-bio
-| 🔒 | ${prefix}block @user - Block user
-| 🧋 | ${prefix}likestatus - Auto-react
-| 🔓 | ${prefix}unblock @user - Unblock
-| 🤖 | ${prefix}antidelete on/off
-| 🚫 | ${prefix}anticall on/off
-| ⚙️ | ${prefix}settings - Bot settings
-| 📝 | ${prefix}setname <text> - Change name
-| 💰 | ${prefix}bc <text> - Broadcast
-| 📲 | ${prefix}clone @user - Clone account
-| 🗑️ | ${prefix}clearall - Clear chats
-| 🔍 | ${prefix}spy <number> - Track user
-| 📛 | ${prefix}ban @user - Ban globally
-| 🔄 | ${prefix}update - Update bot
-| 💻 | ${prefix}shell - Run terminal cmds
-| 🔐 | ${prefix}eval - Execute code
-═══════════════════
-═══════════════════
-🤖 𝗔𝗜 & 𝗖𝗛𝗔𝗧𝗕𝗢𝗧𝗦 (15)
-═══════════════════
-| 💬 | ${prefix}ai <query> - AI chat
-| 🐞 | ${prefix}bug <report> - Report bug
-| 📝 | ${prefix}report <issue> - Report
-| 🚪 | ${prefix}chatbot on/off
-| 🧠 | ${prefix}gpt <query> - ChatGPT
-| 🎨 | ${prefix}xeon <prompt> - AI art
-| 📚 | ${prefix}bard <query> - Google Bard
-| 🤖 | ${prefix}alexa <query> - Voice AI
-| 📄 | ${prefix}summarize <text> - TL;DR
-| 🔍 | ${prefix}translate <lang> <text>
-| 📊 | ${prefix}ocr - Extract text from img
-| 🎙️ | ${prefix}voice <text> - Text-to-speech
-| 📝 | ${prefix}rewrite <text> - Paraphrase
-| 🔮 | ${prefix}gemini <prompt> - Gemini AI
-| 🤯 | ${prefix}brainly <question> - Homework
-═══════════════════
+╭──·๏[🔄 *ᴄᴏɴᴠᴇʀᴛ ᴍᴇɴᴜ* 🔄]
+┆ ◦ 
+┆ ◦  🏷️ sticker
+┆ ◦  🏷️ sticker2
+┆ ◦  😀 emojimix
+┆ ◦  ✨ fancy
+┆ ◦  🖼️ take
+┆ ◦  🎵 tomp3
+┆ ◦  🗣️ tts
+┆ ◦  🌐 trt
+┆ ◦  🔢 base64
+┆ ◦  🔠 unbase64
+┆ ◦  010 binary
+┆ ◦  🔤 dbinary
+┆ ◦  🔗 tinyurl
+┆ ◦  🌐 urldecode
+┆ ◦  🌐 urlencode
+┆ ◦  🌐 url
+┆ ◦  🔁 repeat
+┆ ◦  ❓ ask
+┆ ◦  📖 readmore
+┆ ◦  💚 help
+┆ ◦  💚 support
+┆ ◦ 
+╰─┈⊷
 
-═══════════════════
-📦 𝗠𝗘𝗗𝗜𝗔 𝗖𝗢𝗡𝗩𝗘𝗥𝗧𝗘𝗥𝗦 (20)
-═══════════════════
-| 🎶 | ${prefix}attp <text> - Text to sticker
-| 🎬 | ${prefix}gimage <query> - Google images
-| 🎧 | ${prefix}play <song> - Download audio
-| 📹 | ${prefix}video <query> - Download video
-| 🖼️ | ${prefix}sticker - Image to sticker
-| 🎞️ | ${prefix}mp4 - Video to sticker
-| 📀 | ${prefix}tomp3 - Video to audio
-| 🖌️ | ${prefix}emix - Sticker edit
-| ✂️ | ${prefix}crop - Crop images
-| 🎚️ | ${prefix}contrast - Edit image
-| 🖤 | ${prefix}bnw - Black & white filter
-| 🔥 | ${prefix}burn - Fire effect
-| ❄️ | ${prefix}freeze - Ice effect
-| 🌈 | ${prefix}rainbow - Color effect
-| 📜 | ${prefix}quote - Text on image
-| 🎭 | ${prefix}memegen - Create meme
-| 🏮 | ${prefix}trigger - Triggered effect
-| 🦋 | ${prefix}butterfly - Butterfly effect
-| 🖊️ | ${prefix}sketch - Pencil sketch
-| 🧑‍🎨 | ${prefix}aiart <prompt> - AI art
-═══════════════════
+╭──·๏[🤖 *ᴀɪ ᴍᴇɴᴜ*🤖]
+┆ ◦ 
+┆ ◦  🧠 ai
+┆ ◦  🤖 gpt3
+┆ ◦  🤖 gpt2
+┆ ◦  🤖 gptmini
+┆ ◦  🤖 gpt
+┆ ◦  🔵 meta
+┆ ◦  📦 blackbox
+┆ ◦  🌈 luma
+┆ ◦  🎧 dj
+┆ ◦  🧠 gpt4
+┆ ◦  🔍 bing
+┆ ◦  🎨 imagine
+┆ ◦  🖼️ imagine2
+┆ ◦  🤖 copilot
+┆ ◦ 
+╰─┈⊷
 
-═══════════════════
-🔍 𝗦𝗘𝗔𝗥𝗖𝗛 & 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗 (25)
-═══════════════════
-| 🔎 | ${prefix}google <query>
-| 📽️ | ${prefix}mediafire <url> - DL files
-| 🚪 | ${prefix}facebook <url> - FB DL
-| ❤️ | ${prefix}instagram <url> - IG DL
-| 🚪 | ${prefix}tiktok <url> - TikTok DL
-| 🎶 | ${prefix}lyrics <song>
-| 🎬 | ${prefix}imdb <movie> - Film info
-| 🔞 | ${prefix}nsfw - Adult content
-| 📚 | ${prefix}wiki <query> - Wikipedia
-| 🗞️ | ${prefix}news - Latest headlines
-| 🏛️ | ${prefix}crypto <coin> - Prices
-| 💸 | ${prefix}weather <city> - Forecast
-| 📱 | ${prefix}phone <number> - Track
-| 🏆 | ${prefix}score - Live sports
-| 🎮 | ${prefix}steam <game> - Steam info
-| 🛒 | ${prefix}shopee <product> - Price
-| 📦 | ${prefix}npm <package> - NPM search
-| 🎓 | ${prefix}course - Free courses
-| 🏛️ | ${prefix}gov <id> - Gov data
-| 🚀 | ${prefix}iss - ISS tracker
-| 🌌 | ${prefix}apod - NASA pic of day
-| 📡 | ${prefix}speedtest - Internet speed
-| 🏦 | ${prefix}exchange <amount> <cur1> <cur2>
-| 🎫 | ${prefix}coupon - Discount coupons
-| 🧾 | ${prefix}invoice - Bill generator
-═══════════════════
+╭──·๏[⚡*ᴍᴀɪɴ ᴍᴇɴᴜ* ⚡]
+┆ ◦ 
+┆ ◦  🏓 ping
+┆ ◦  🚀 speed
+┆ ◦  📡 live
+┆ ◦  💚 alive
+┆ ◦  ⏱️ runtime
+┆ ◦  ⏳ uptime
+┆ ◦  📦 repo
+┆ ◦  👑 owner
+┆ ◦  📜 menu
+┆ ◦  📜 menu2
+┆ ◦  🔄 restart
+┆ ◦ 
+╰─┈⊷
+
+╭──·๏[🎎 *ᴀɴɪᴍᴇ ᴍᴇɴᴜ* 🎎] 
+┆ ◦ 
+┆ ◦  🤬 fack
+┆ ◦  ✅ truth
+┆ ◦  😨 dare
+┆ ◦  🐶 dog
+┆ ◦  🐺 awoo
+┆ ◦  👧 garl
+┆ ◦  👰 waifu
+┆ ◦  🐱 neko
+┆ ◦  🧙 megnumin
+┆ ◦  🐱 neko
+┆ ◦  👗 maid
+┆ ◦  👧 loli
+┆ ◦  📰 animenews
+┆ ◦  🦊 foxgirl
+┆ ◦  🍥 naruto
+┆ ◦ 
+╰─┈⊷
+
+╭──·๏[ℹ️*ᴏᴛʜᴇʀ ᴍᴇɴᴜ* ℹ️]
+┆ ◦ 
+┆ ◦  🕒 timenow
+┆ ◦  📅 date
+┆ ◦  🔢 count
+┆ ◦  🧮 calculate
+┆ ◦  🔢 countx
+┆ ◦  🎲 flip
+┆ ◦  🪙 coinflip
+┆ ◦  🎨 rcolor
+┆ ◦  🎲 roll
+┆ ◦  ℹ️ fact
+┆ ◦  💻 cpp
+┆ ◦  🎲 rw
+┆ ◦  💑 pair
+┆ ◦  💑 pair2
+┆ ◦  ✨ fancy
+┆ ◦  🎨 logo <text>
+┆ ◦  📖 define
+┆ ◦  📰 news
+┆ ◦  🎬 movie
+┆ ◦  ☀️ weather
+┆ ◦  📦 srepo
+┆ ◦  🤬 insult
+┆ ◦  💾 save
+┆ ◦  🌐 wikipedia
+┆ ◦  🔑 gpass
+┆ ◦  👤 githubstalk
+┆ ◦  🔍 yts
+┆ ◦  📹 ytv
+┆ ◦ 
+╰━[ *Arslan-MD v2.0* ]━━⬣
 📢 ᴅᴇᴠᴇʟᴏᴘᴇʀ ▌│█║▌║▌║   🎀 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟 🍑║▌║▌║█│▌
 `.trim();
 
