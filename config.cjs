@@ -1,10 +1,11 @@
 // config.cjs (Arslan-Ai-2.0 ULTIMATE CONFIG)
 const fs = require('fs');
 require('dotenv').config();
+console.log("✅ Arslan-Ai-2.0 config loaded...");
 
 const config = {
   // ================== 🔰 CORE CONFIG ================== //
-  VERSION: "2.0.0",
+  VERSION: process.env.BOT_VERSION || "2.0.0",
   DEPLOY_DATE: process.env.DEPLOY_DATE || new Date().toISOString().split('T')[0],
   SESSION_ID: process.env.SESSION_ID || "ARSL~E2sBgKiI#YcHiFWxnIebf_Xkwgc-8zVdYBPTXaShKfoDpDtcz3ZA",
   PREFIX: process.env.PREFIX || '.',
