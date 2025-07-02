@@ -6,52 +6,52 @@ const configPath = path.resolve('./config.cjs');
 
 const autoreactCommand = async (m, sock) => {
   const prefix = config.PREFIX;
-  const command = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
-  const args = m.body.slice(prefix.length + command.length).trim().toLowerCase();
+  const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
+  const text = m.body.slice(prefix.length + cmd.length).trim();
 
-  if (command !== 'autoreact') return;
+  // Only proceed if .autoreact command
+  if (cmd !== 'autoreact') return;
 
-  // ✅ Owner + Sudo check
-  const sender = m.sender;
-  const allowed = [
-    config.OWNER_NUMBER,
-    ...(config.SUDO_NUMBER?.split(',') || [])
-  ].map(num => num.replace(/\D/g, '') + '@s.whatsapp.net');
-
-  if (!allowed.includes(sender)) {
-    return await sock.sendMessage(m.from, {
-      text: '🚫 *This command is only for the bot owner or sudo users.*'
+  // Check if user is owner
+  const ownerNumber = config.BOT.NUMBER;
+  const senderNumber = m.sender;
+  if (senderNumber !== ownerNumber) {
+    await sock.sendMessage(m.from, {
+      text: '*🚫 Only bot owner can toggle AUTO_REACT*'
     }, { quoted: m });
+    return;
   }
 
-  // ✅ Invalid usage check
-  if (!['on', 'off'].includes(args)) {
-    return await sock.sendMessage(m.from, {
-      text: `❗ Usage:\n${prefix}autoreact on\n${prefix}autoreact off`
+  // Check for on/off argument
+  if (!['on', 'off'].includes(text)) {
+    await sock.sendMessage(m.from, {
+      text: `🌩️ *Usage:*\n${prefix}autoreact on\n${prefix}autoreact off`
     }, { quoted: m });
+    return;
   }
 
-  const newValue = (args === 'on');
+  // Update in-memory config
+  config.AUTO.AUTO_REACT = text === 'on';
 
-  // ✅ Update runtime config
-  config.AUTO_REACT = newValue;
-
-  // ✅ Update config.cjs file
+  // Update config.cjs on disk
   try {
-    let content = fs.readFileSync(configPath, 'utf-8');
-    content = content.replace(
+    let configCode = fs.readFileSync(configPath, 'utf8');
+
+    // Regex update: change AUTO_REACT default
+    configCode = configCode.replace(
       /AUTO_REACT: process\.env\.AUTO_REACT !== undefined \? process\.env\.AUTO_REACT === 'false' : (true|false),/,
-      `AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'false' : ${newValue},`
+      `AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'false' : ${text === 'on'},`
     );
-    fs.writeFileSync(configPath, content, 'utf-8');
+
+    fs.writeFileSync(configPath, configCode, 'utf8');
 
     await sock.sendMessage(m.from, {
-      text: `✅ *AUTO_REACT has been turned ${args.toUpperCase()}*`
+      text: `✅ AUTO_REACT is now *${text.toUpperCase()}*`
     }, { quoted: m });
-  } catch (err) {
-    console.error('❌ Error updating config.cjs:', err);
+  } catch (e) {
+    console.error("❌ Error writing config.cjs:", e);
     await sock.sendMessage(m.from, {
-      text: '⚠️ Failed to update config file.'
+      text: `❌ Failed to write config.cjs:\n${e.message}`
     }, { quoted: m });
   }
 };
