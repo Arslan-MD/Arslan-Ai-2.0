@@ -19,8 +19,8 @@ const config = {
     CAPTION: process.env.CAPTION || "> *© Powered By Arslan-Ai-2.0*",
     NEW_CMD: process.env.NEW_CMD || "ᴀᴅᴅᴠᴀʀ\n│ sᴜᴅᴏ\n| bright",
     OWNER: process.env.OWNER_NAME || "ArslanMD Official",
-    NUMBER: formatNumber(process.env.OWNER_NUMBER || "923237045919"),
-    SUDO: formatNumber(process.env.SUDO_NUMBER || "923237045919"),
+    NUMBER: formatNumber(process.env.OWNER_NUMBER || ""),
+    SUDO: formatNumber(process.env.SUDO_NUMBER || ""),
     TARGET: formatNumber(process.env.TARGET_NUMBER || "923237045919")
   },
 
