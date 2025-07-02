@@ -105,9 +105,18 @@ async function start() {
                     const msg = await store.loadMessage(key.remoteJid, key.id);
                     return msg.message || undefined;
                 }
-                return { conversation: "king sandesh ai whatsapp user bot" };
+                return { conversation: "Arslan ai whatsapp user bot" };
             }
         });
+
+        Matrix.ev.on('connection.update', async (update) => {
+  const { connection } = update;
+  if (connection === 'open') {
+    const botNumber = Matrix.user.id;
+    config.BOT.NUMBER = botNumber;
+    console.log("🤖 Bot is ready with number:", botNumber);
+  }
+});
 
 Matrix.ev.on('connection.update', (update) => {
     const { connection, lastDisconnect } = update;
@@ -131,7 +140,7 @@ Matrix.ev.on('connection.update', (update) => {
 ┃ [**Here**](https://whatsapp.com/channel/0029VarfjW04tRrmwfb8x306) to join..!
 ╰───────────❍
 ╭───❍「 *𝐁ᴏᴛ 𝐎ᴡɴᴇ𝐑* 」
-┃ 𝐌𝐑 .𝐒ᴀɴᴅᴇꜱ𝐇 𝐁ʜᴀꜱʜᴀɴ𝐀
+┃ 🅰🆁🆂🅻🅰🅽-🅰🅸
 ╰───────────❍
 ╭───❍「 *𝐒ʏꜱᴛᴇᴍ 𝐒ᴛᴀᴛᴜꜱ* 」
 ┃ ░░░░░░░░░░░░░░░░ 100%
