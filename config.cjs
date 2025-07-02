@@ -28,7 +28,7 @@ const config = {
   AUTO: {
     // Message Handling
     READ: parseBool(process.env.AUTO_READ, true),
-    REACT: parseBool(process.env.AUTO_REACT, true),
+    AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'false' : true,
     REACT_EMOJI: process.env.AUTOLIKE_EMOJI || '💚',
     TYPING: parseBool(process.env.AUTO_TYPING, false),
     RECORDING: parseBool(process.env.AUTO_RECORDING, false),
