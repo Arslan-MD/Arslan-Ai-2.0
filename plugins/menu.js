@@ -119,7 +119,6 @@ const audioPath = path.join(process.cwd(), 'media', 'menu.mp3');
 await sock.sendMessage(m.from, {
 video: fs.readFileSync(videoPath),
 caption: menuText,
-gifPlayback: false,
 contextInfo: {
 forwardingScore: 999,
 isForwarded: true,
