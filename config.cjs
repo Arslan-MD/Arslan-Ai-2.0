@@ -1,8 +1,9 @@
-//Arslan-Ai-2.0 config.js
 const fs = require("fs");
 require("dotenv").config();
 
 const config = {
+  VERSION: "2.0.0", // ⬅️ Add this line at the top or bottom
+
   SESSION_ID: process.env.SESSION_ID || "ARSL~E2sBgKiI#YcHiFWxnIebf_Xkwgc-8zVdYBPTXaShKfoDpDtcz3ZA",
   PREFIX: process.env.PREFIX || '.',
   BOT_NAME: process.env.BOT_NAME || "<| Arslan-Ai-2.0 𝐕❷🫧",
@@ -38,11 +39,9 @@ const config = {
   SUDO_NUMBER: process.env.SUDO_NUMBER || "923237045919",
   GEMINI_KEY: process.env.GEMINI_KEY || "AIzaSyCUPaxfIdZawsKZKqCqJcC-GWiQPCXKTDc",
   WELCOME: process.env.WELCOME !== undefined ? process.env.WELCOME === 'true' : false,
-
-  // New additions for status command
-  STATUS: process.env.STATUS !== undefined ? process.env.STATUS === 'true' : false,  // enable/disable status feature
-  DEPLOY_DATE: process.env.DEPLOY_DATE || "2025-07-01",                         // deployment date (YYYY-MM-DD)
-  TARGET_NUMBER: process.env.TARGET_NUMBER || "923237045919"                    // target phone number for status messages
+  STATUS: process.env.STATUS !== undefined ? process.env.STATUS === 'true' : false,
+  DEPLOY_DATE: process.env.DEPLOY_DATE || "2025-07-01",
+  TARGET_NUMBER: process.env.TARGET_NUMBER || "923237045919"
 };
 
 module.exports = config;
