@@ -33,75 +33,158 @@ const menuText = `
 ════════════════════
 
 ✨ 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨 ✨
+const menu = `
+✨ 𝗨𝗟𝗧𝗜𝗠𝗔𝗧𝗘 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨 ✨
 
-> Explore the commands below to harness the bot's full power!
+> Total Commands: Prefix: [ ${prefix} ]
 
+═══════════════════
+🌍  𝗦𝗬𝗦𝗧𝗘𝗠 𝗠𝗘𝗡𝗨 (12)
+═══════════════════
+| ⚡ | ${prefix}menu - All commands
+| 🟢 | ${prefix}alive - Bot status
+| 🛠️ | ${prefix}owner - Contact owner
+| 📊 | ${prefix}stats - Bot analytics
+| 🍔 | ${prefix}list - Command list
+| 🔄 | ${prefix}restart - Restart bot
+| 📝 | ${prefix}sc - Source code
+| 🚀 | ${prefix}speed - Bot speed test
+| 🔍 | ${prefix}ping - Check latency
+| 💾 | ${prefix}backup - Backup data
+| 📛 | ${prefix}reportbug - Report issues
+| 🔐 | ${prefix}term - Termux setup guide
+═══════════════════
 
-════════════════════
-🌍  𝗦𝗬𝗦𝗧𝗘𝗠 𝗠𝗘𝗡𝗨 🌍
-════════════════════
-| ⚡ | ${prefix}menu
-| 🟢 | ${prefix}alive
-| 🛠️ | ${prefix}owner
-| 🍔 | ${prefix}list
-════════════════════
+═══════════════════
+👑  𝗢𝗪𝗡𝗘𝗥 𝗠𝗘𝗡𝗨 (18)
+═══════════════════
+| 🎮 | ${prefix}join <link> - Join group
+| 🚪 | ${prefix}leave - Exit group
+| 🩷 | ${prefix}autobio on/off - Auto-bio
+| 🔒 | ${prefix}block @user - Block user
+| 🧋 | ${prefix}likestatus - Auto-react
+| 🔓 | ${prefix}unblock @user - Unblock
+| 🤖 | ${prefix}antidelete on/off
+| 🚫 | ${prefix}anticall on/off
+| ⚙️ | ${prefix}settings - Bot settings
+| 📝 | ${prefix}setname <text> - Change name
+| 💰 | ${prefix}bc <text> - Broadcast
+| 📲 | ${prefix}clone @user - Clone account
+| 🗑️ | ${prefix}clearall - Clear chats
+| 🔍 | ${prefix}spy <number> - Track user
+| 📛 | ${prefix}ban @user - Ban globally
+| 🔄 | ${prefix}update - Update bot
+| 💻 | ${prefix}shell - Run terminal cmds
+| 🔐 | ${prefix}eval - Execute code
+═══════════════════
+═══════════════════
+🤖 𝗔𝗜 & 𝗖𝗛𝗔𝗧𝗕𝗢𝗧𝗦 (15)
+═══════════════════
+| 💬 | ${prefix}ai <query> - AI chat
+| 🐞 | ${prefix}bug <report> - Report bug
+| 📝 | ${prefix}report <issue> - Report
+| 🚪 | ${prefix}chatbot on/off
+| 🧠 | ${prefix}gpt <query> - ChatGPT
+| 🎨 | ${prefix}xeon <prompt> - AI art
+| 📚 | ${prefix}bard <query> - Google Bard
+| 🤖 | ${prefix}alexa <query> - Voice AI
+| 📄 | ${prefix}summarize <text> - TL;DR
+| 🔍 | ${prefix}translate <lang> <text>
+| 📊 | ${prefix}ocr - Extract text from img
+| 🎙️ | ${prefix}voice <text> - Text-to-speech
+| 📝 | ${prefix}rewrite <text> - Paraphrase
+| 🔮 | ${prefix}gemini <prompt> - Gemini AI
+| 🤯 | ${prefix}brainly <question> - Homework
+═══════════════════
 
-════════════════════
-👑  𝗢𝗪𝗡𝗘𝗥 𝗠𝗘𝗡𝗨 👑
-════════════════════
-| 🎮 | ${prefix}join
-| 🚪 | ${prefix}leave
-| 🩷 | ${prefix}autobio
-| 🔒 | ${prefix}block
-| 🧋 | ${prefix}likestatus
-| 🔓 | ${prefix}unblock
-| 🤖 | ${prefix}antidelete
-| 🚫 | ${prefix}anticall
-| 🛑 | ${prefix}settings
-| 📝 | ${prefix}setname
-════════════════════
+═══════════════════
+📦 𝗠𝗘𝗗𝗜𝗔 𝗖𝗢𝗡𝗩𝗘𝗥𝗧𝗘𝗥𝗦 (20)
+═══════════════════
+| 🎶 | ${prefix}attp <text> - Text to sticker
+| 🎬 | ${prefix}gimage <query> - Google images
+| 🎧 | ${prefix}play <song> - Download audio
+| 📹 | ${prefix}video <query> - Download video
+| 🖼️ | ${prefix}sticker - Image to sticker
+| 🎞️ | ${prefix}mp4 - Video to sticker
+| 📀 | ${prefix}tomp3 - Video to audio
+| 🖌️ | ${prefix}emix - Sticker edit
+| ✂️ | ${prefix}crop - Crop images
+| 🎚️ | ${prefix}contrast - Edit image
+| 🖤 | ${prefix}bnw - Black & white filter
+| 🔥 | ${prefix}burn - Fire effect
+| ❄️ | ${prefix}freeze - Ice effect
+| 🌈 | ${prefix}rainbow - Color effect
+| 📜 | ${prefix}quote - Text on image
+| 🎭 | ${prefix}memegen - Create meme
+| 🏮 | ${prefix}trigger - Triggered effect
+| 🦋 | ${prefix}butterfly - Butterfly effect
+| 🖊️ | ${prefix}sketch - Pencil sketch
+| 🧑‍🎨 | ${prefix}aiart <prompt> - AI art
+═══════════════════
 
-════════════════════
-🤖  𝗚𝗣𝗧 𝗠𝗘𝗡𝗨 🤖
-════════════════════
-| 💬 | ${prefix}ai
-| 🐞 | ${prefix}bug
-| 📝 | ${prefix}report
-| 🚪 | ${prefix}chatbot
-| 🧠 | ${prefix}gpt
-| 🎨 | ${prefix}xeon
-════════════════════
-
-════════════════════
-📦  𝗖𝗢𝗡𝗩𝗘𝗥𝗧𝗘𝗥 𝗣𝗔𝗚𝗘 📦
-════════════════════
-| 🎶 | ${prefix}attp
-| 🎬 | ${prefix}gimage
-| 🎧 | ${prefix}play
-| 📹 | ${prefix}video
-════════════════════
-
-════════════════════
-🔍  𝗦𝗘𝗔𝗥𝗖𝗛 𝗠𝗘𝗡𝗨 🔍
-════════════════════
-| 🔎 | ${prefix}google
-| 📽️ | ${prefix}mediafire
-| 🚪 | ${prefix}facebook
-| ❤️ | ${prefix}instagram
-| 🚪 | ${prefix}tiktok
-| 🎶 | ${prefix}lyrics
-| 🎬 | ${prefix}imdb
-| 🔞 | ${prefix}hwaifu/sex/xxx
-════════════════════
-
-════════════════════
-🔍  𝗙𝗨𝗡 𝗠𝗘𝗡𝗨 🔍
-════════════════════
-| 🔎 | ${prefix}getpp
-| 📽️ | ${prefix}url
-| 😂 | ${prefix}roast
-════════════════════
-
+═══════════════════
+🔍 𝗦𝗘𝗔𝗥𝗖𝗛 & 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗 (25)
+═══════════════════
+| 🔎 | ${prefix}google <query>
+| 📽️ | ${prefix}mediafire <url> - DL files
+| 🚪 | ${prefix}facebook <url> - FB DL
+| ❤️ | ${prefix}instagram <url> - IG DL
+| 🚪 | ${prefix}tiktok <url> - TikTok DL
+| 🎶 | ${prefix}lyrics <song>
+| 🎬 | ${prefix}imdb <movie> - Film info
+| 🔞 | ${prefix}nsfw - Adult content
+| 📚 | ${prefix}wiki <query> - Wikipedia
+| 🗞️ | ${prefix}news - Latest headlines
+| 🏛️ | ${prefix}crypto <coin> - Prices
+| 💸 | ${prefix}weather <city> - Forecast
+| 📱 | ${prefix}phone <number> - Track
+| 🏆 | ${prefix}score - Live sports
+| 🎮 | ${prefix}steam <game> - Steam info
+| 🛒 | ${prefix}shopee <product> - Price
+| 📦 | ${prefix}npm <package> - NPM search
+| 🎓 | ${prefix}course - Free courses
+| 🏛️ | ${prefix}gov <id> - Gov data
+| 🚀 | ${prefix}iss - ISS tracker
+| 🌌 | ${prefix}apod - NASA pic of day
+| 📡 | ${prefix}speedtest - Internet speed
+| 🏦 | ${prefix}exchange <amount> <cur1> <cur2>
+| 🎫 | ${prefix}coupon - Discount coupons
+| 🧾 | ${prefix}invoice - Bill generator
+═══════════════════
+═══════════════════
+🎮 𝗙𝗨𝗡 & 𝗚𝗔𝗠𝗘𝗦 (30)
+═══════════════════
+| 😂 | ${prefix}joke - Random jokes
+| 🎲 | ${prefix}dice - Roll dice
+| 🎯 | ${prefix}dart - Throw dart
+| 🏀 | ${prefix}basket - Basketball
+| ⚽ | ${prefix}football - Penalty shoot
+| 🎰 | ${prefix}slot - Slot machine
+| ♟️ | ${prefix}chess - Play chess
+| 📜 | ${prefix}truth - Truth challenge
+| 💀 | ${prefix}dare - Dare challenge
+| 💔 | ${prefix}breakup - Fake breakup
+| 💑 | ${prefix}couple - Match couples
+| 🔮 | ${prefix}magic8 - 8-ball fortune
+| 📛 | ${prefix}ship - Love calculator
+| 🧩 | ${prefix}quiz - General quiz
+| 🃏 | ${prefix}card - Draw card
+| 🎭 | ${prefix}fact - Random facts
+| 🎪 | ${prefix}wouldyourather
+| 🎤 | ${prefix}karaoke - Sing challenge
+| 🧠 | ${prefix}math <equation> - Calculator
+| 🖼️ | ${prefix}findobj - Find objects
+| 🧩 | ${prefix}wordle - Word puzzle
+| 📖 | ${prefix}story - Random story
+| 🎵 | ${prefix}guesssong - Song quiz
+| 🎬 | ${prefix}guessmovie - Movie quiz
+| 🎨 | ${prefix}guesslogo - Brand quiz
+| 🏛️ | ${prefix}countryquiz
+| 🍔 | ${prefix}foodquiz
+| 🐾 | ${prefix}animalquiz
+| 🚗 | ${prefix}carquiz
+| 👕 | ${prefix}fashionquiz
+═══════════════════
 🔧 Wᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛʜᴇ ᴍᴇɴᴜ!
 ᴡᴀɪᴛ ғᴏʀ ᴍᴏʀᴇ ᴄᴏᴍᴍᴀɴᴅs...
 
