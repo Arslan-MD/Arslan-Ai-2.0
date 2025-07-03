@@ -89,39 +89,48 @@ async function downloadSessionData() {
 }
 
 async function start() {
-    try {
-        const { state, saveCreds } = await useMultiFileAuthState(sessionDir);
-        const { version, isLatest } = await fetchLatestBaileysVersion();
-        console.log(`🤖 Arslan-Ai-2.0 using WA v${version.join('.')}, isLatest: ${isLatest}`);
-        
-        const Matrix = makeWASocket({
-            version,
-            logger: pino({ level: 'silent' }),
-            printQRInTerminal: useQR,
-            browser: ["Arslan-Ai-2.0", "safari", "3.3"],
-            auth: state,
-            getMessage: async (key) => {
-                if (store) {
-                    const msg = await store.loadMessage(key.remoteJid, key.id);
-                    return msg.message || undefined;
-                }
-                return { conversation: "Arslan ai whatsapp user bot" };
-            }
-        });
+  try {
+    const { state, saveCreds } = await useMultiFileAuthState(sessionDir);
+    const { version, isLatest } = await fetchLatestBaileysVersion();
+    console.log(`🤖 Arslan-Ai-2.0 using WA v${version.join('.')}, isLatest: ${isLatest}`);
 
-        Matrix.ev.on('connection.update', async (update) => {
-  const { connection } = update;
-  if (connection === 'open') {
-    const botNumber = Matrix.user.id;
-    config.BOT.NUMBER = botNumber;
-    console.log("🤖 Bot is ready with number:", botNumber);
-  }
-});
+    const Matrix = makeWASocket({
+      version,
+      logger: pino({ level: 'silent' }),
+      printQRInTerminal: useQR,
+      browser: ["Arslan-Ai-2.0", "safari", "3.3"],
+      auth: state,
+      getMessage: async (key) => {
+        if (store) {
+          const msg = await store.loadMessage(key.remoteJid, key.id);
+          return msg.message || undefined;
+        }
+        return { conversation: "Arslan ai whatsapp user bot" };
+      }
+    });
 
-Matrix.ev.on('connection.update', (update) => {
-    const { connection, lastDisconnect } = update;
-    if (connection === 'close') {
-        if (lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut) {
+    // ✅ Save session on update
+    Matrix.ev.on('creds.update', saveCreds);
+
+    // ✅ Handle connection (open & reconnect)
+    Matrix.ev.on('connection.update', async (update) => {
+      const { connection, lastDisconnect } = update;
+
+      if (connection === 'open') {
+        const botNumber = Matrix.user.id;
+        config.BOT.NUMBER = botNumber;
+        config.BOT.SUDO = botNumber;
+        console.log("🤖 Bot connected as:", botNumber);
+        console.log("👑 Owner (label):", config.BOT.OWNER);
+      }
+
+      if (connection === 'close') {
+        const reason = lastDisconnect?.error?.output?.statusCode;
+        if (reason !== DisconnectReason.loggedOut) {
+          console.log("🔁 Reconnecting...");
+          start(); // reconnect
+        } else {
+          console.log("❌ Logged out.") {
             start();
         }
     } else if (connection === 'open') {
