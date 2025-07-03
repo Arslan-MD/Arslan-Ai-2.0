@@ -131,8 +131,26 @@ async function start() {
           start(); // reconnect
         } else {
           console.log("❌ Logged out.");
-            start();
+          start(); // force restart
         }
+      }
+    });
+
+    // ✅ Set PUBLIC or PRIVATE mode
+    if (config.MODE === "public") {
+      Matrix.public = true;
+      console.log("📢 Bot is in PUBLIC mode.");
+    } else {
+      Matrix.public = false;
+      console.log("🔒 Bot is in PRIVATE mode.");
+    }
+
+    // 🔽 yahan baaki events aur plugin loader rahega...
+
+  } catch (err) {
+    console.error("❌ Failed to start bot:", err);
+  }
+}
     } else if (connection === 'open') {
         if (initialConnection) {
             console.log(chalk.green("Connected Successfully Arslan-Ai-2.0 🤍"));
