@@ -80,24 +80,40 @@ async function start() {
     Matrix.ev.on('creds.update', saveCreds);
 
     Matrix.ev.on('connection.update', async ({ connection, lastDisconnect }) => {
-      if (connection === 'open') {
-        config.BOT.NUMBER = Matrix.user.id;
-        config.BOT.SUDO = Matrix.user.id;
-        console.log("🤖 Bot connected as:", Matrix.user.id);
+  if (connection === 'open') {
+    config.BOT.NUMBER = Matrix.user.id;
+    config.BOT.SUDO = Matrix.user.id;
+    console.log("🤖 Bot connected as:", Matrix.user.id);
+    console.log("👑 Owner (label):", config.BOT.OWNER);
 
-        if (initialConnection) {
-          await Matrix.sendMessage(Matrix.user.id, {
-            image: { url: "https://files.catbox.moe/2bhefn.png" },
-            caption: `> Connected Successfully to *Arslan-Ai-2.0* 🩷\nPrefix: ${prefix}`
-          });
-          initialConnection = false;
-        }
-      } else if (connection === 'close') {
-        const reason = lastDisconnect?.error?.output?.statusCode;
-        console.log(reason !== DisconnectReason.loggedOut ? "🔁 Reconnecting..." : "❌ Logged out.");
-        start();
-      }
-    });
+    // ✅ Set mode PUBLIC or PRIVATE
+    if (config.MODE === "public") {
+      Matrix.public = true;
+      console.log("📢 Bot is in PUBLIC mode.");
+    } else {
+      Matrix.public = false;
+      console.log("🔒 Bot is in PRIVATE mode.");
+    }
+
+    // ✅ Optional: Notify owner on connect
+    if (initialConnection) {
+      await Matrix.sendMessage(Matrix.user.id, {
+        text: `🤖 *Arslan-Ai-2.0 connected successfully!*\nMode: ${config.MODE.toUpperCase()}`
+      });
+      initialConnection = false;
+    }
+
+  } else if (connection === 'close') {
+    const reason = lastDisconnect?.error?.output?.statusCode;
+    if (reason !== DisconnectReason.loggedOut) {
+      console.log("🔁 Reconnecting...");
+      start(); // reconnect
+    } else {
+      console.log("❌ Logged out.");
+      start(); // force restart
+    }
+  }
+});
 
     // Public/private toggle
     Matrix.public = config.MODE === 'public';
