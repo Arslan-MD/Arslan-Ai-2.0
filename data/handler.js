@@ -44,9 +44,9 @@ const Handler = async (chatUpdate, sock, logger) => {
         let isCreator = false;
 
         if (m.isGroup) {
-            isCreator = m.sender === ownerNumber || m.sender === botNumber;
+            isCreator = m.sender === ownerNumber;
         } else {
-            isCreator = m.sender === ownerNumber || m.sender === botNumber;
+            isCreator = m.sender === ownerNumber:
         }
 
         if (!sock.public) {
