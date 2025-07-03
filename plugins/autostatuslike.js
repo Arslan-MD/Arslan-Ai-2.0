@@ -1,4 +1,4 @@
-import config from '../config.cjs'; // ✅ Correct relative path
+import config from '../config.cjs';
 
 const autolikeCommand = async (m, Matrix) => {
   const botNumber = await Matrix.decodeJid(Matrix.user.id);
@@ -15,23 +15,39 @@ const autolikeCommand = async (m, Matrix) => {
   if (!validCommands.includes(cmd)) return;
 
   if (!isCreator) {
-    await Matrix.sendMessage(m.from, { text: "*📛 THIS IS AN OWNER COMMAND*" }, { quoted: m });
+    await Matrix.sendMessage(m.from, {
+      text: "*📛 THIS IS AN OWNER COMMAND*"
+    }, { quoted: m });
     return;
   }
 
-  let responseMessage = '';
-
+  let responseText = '';
   if (text === 'on') {
     config.AUTO_STATUS_REACT = true;
-    responseMessage = "✅ AUTO LIKE STATUS has been enabled.";
+    responseText = "✅ *AUTO LIKE STATUS has been ENABLED*";
   } else if (text === 'off') {
     config.AUTO_STATUS_REACT = false;
-    responseMessage = "❌ AUTO LIKE STATUS has been disabled.";
+    responseText = "❌ *AUTO LIKE STATUS has been DISABLED*";
   } else {
-    responseMessage = `🌩️ Usage:\n- *${prefix + cmd} on*: Enable\n- *${prefix + cmd} off*: Disable`;
+    responseText = `🌩️ *Usage:*\n- ${prefix + cmd} on\n- ${prefix + cmd} off`;
   }
 
-  await Matrix.sendMessage(m.from, { text: responseMessage }, { quoted: m });
+  await Matrix.sendMessage(m.from, {
+    image: { url: 'https://opengraph.githubassets.com/1/Arslan-MD/Arslan-Ai-2.0' },
+    caption: `${responseText}\n\n🤖 *Bot:* ${config.BOT_NAME}\n👑 *Owner:* ${config.OWNER_NAME}\n📦 *Repo:* github.com/Arslan-MD/Arslan-Ai-2.0`,
+    contextInfo: {
+      forwardingScore: 100,
+      isForwarded: true,
+      externalAdReply: {
+        title: `${config.BOT_NAME} - AutoStatusLike`,
+        body: "Powered by ArslanMD Official",
+        mediaType: 1,
+        previewType: "PHOTO",
+        thumbnailUrl: 'https://opengraph.githubassets.com/1/Arslan-MD/Arslan-Ai-2.0',
+        sourceUrl: 'https://github.com/Arslan-MD/Arslan-Ai-2.0'
+      }
+    }
+  }, { quoted: m });
 };
 
 export default autolikeCommand;
