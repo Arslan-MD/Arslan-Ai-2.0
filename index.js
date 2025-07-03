@@ -130,7 +130,7 @@ async function start() {
           console.log("🔁 Reconnecting...");
           start(); // reconnect
         } else {
-          console.log("❌ Logged out.") {
+          console.log("❌ Logged out.");
             start();
         }
     } else if (connection === 'open') {
