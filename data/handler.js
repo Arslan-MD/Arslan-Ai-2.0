@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Function to get group admins
+// ✅ Group admin checker
 export const getGroupAdmins = (participants) => {
     let admins = [];
     for (let i of participants) {
@@ -27,7 +27,14 @@ const Handler = async (chatUpdate, sock, logger) => {
         const m = serialize(JSON.parse(JSON.stringify(chatUpdate.messages[0])), sock, logger);
         if (!m.message) return;
 
-        const participants = m.isGroup ? await sock.groupMetadata(m.from).then(metadata => metadata.participants) : [];
+        // ✅ Fix: extract body for command parsing
+        m.body = m.message.conversation
+            || m.message.extendedTextMessage?.text
+            || m.message.imageMessage?.caption
+            || m.message.videoMessage?.caption
+            || '';
+
+        const participants = m.isGroup ? await sock.groupMetadata(m.from).then(md => md.participants) : [];
         const groupAdmins = m.isGroup ? getGroupAdmins(participants) : [];
         const botId = sock.user.id.split(':')[0] + '@s.whatsapp.net';
         const isBotAdmins = m.isGroup ? groupAdmins.includes(botId) : false;
@@ -41,37 +48,24 @@ const Handler = async (chatUpdate, sock, logger) => {
         const text = m.body.slice(prefix.length + cmd.length).trim();
         const botNumber = await sock.decodeJid(sock.user.id);
         const ownerNumber = config.BOT.NUMBER;
-        const rawMessage = m.message; m.body = m.message.conversation || m.message.extendedTextMessage?.text || m.message.imageMessage?.caption || '';
-     
-        let isCreator = false;
+        let isCreator = m.sender === ownerNumber;
 
-        if (m.isGroup) {
-            isCreator = m.sender === ownerNumber;
-        } else {
-            isCreator = m.sender === ownerNumber;
-        }
+        // ✅ Only allow non-owners if bot is public
+        if (!sock.public && !isCreator) return;
 
-        if (!sock.public) {
-            if (!isCreator) {
-                return;
-            }
-        }
-
+        // ✅ Run Antilink
         await handleAntilink(m, sock, logger, isBotAdmins, isAdmins, isCreator);
 
-        const { isGroup, type, sender, from, body } = m;
-      //  console.log(m);
+        // ✅ Dynamic Plugin Loading
+        const pluginDir = path.resolve(__dirname, '..', 'plugins');
 
-        // ✅ Corrected Plugin Folder Path
-        const pluginDir = path.resolve(__dirname, '..', 'plugins');  
-        
         try {
             const pluginFiles = await fs.readdir(pluginDir);
 
             for (const file of pluginFiles) {
                 if (file.endsWith('.js')) {
                     const pluginPath = path.join(pluginDir, file);
-                    
+
                     try {
                         const pluginModule = await import(`file://${pluginPath}`);
                         const loadPlugins = pluginModule.default;
@@ -86,10 +80,8 @@ const Handler = async (chatUpdate, sock, logger) => {
         }
 
     } catch (e) {
-        console.error(e);
+        console.error('❌ Handler error:', e);
     }
 };
 
 export default Handler;
-        
-            
