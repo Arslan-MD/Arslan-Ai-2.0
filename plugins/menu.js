@@ -25,15 +25,13 @@ const responseTime = (end - start) / 1000;
 const menuText = `
 
 ════════════════════
-
 > 🌟 𝔸𝕣𝕤𝕝𝕒𝕟-𝔸𝕚-𝟚.𝟘 🌟
 > *Version: 2.0.0* |
-🎀 *𝒟𝑒𝓋𝑒𝓁♡𝓅𝑒𝒹 𝒷𝓎 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟* 🎀
-*ULTRA POWERFULL AND SPEED⚡
+> *𝒟𝑒𝓋𝑒𝓁♡𝓅𝑒𝒹 𝒷𝓎 𝒜𝓇𝓈𝓁𝒶𝓃𝑀𝒟* 🎀
+_*ULTRA POWERFULL BOT*_
 ════════════════════
-
-✨ 𝗨𝗟𝗧𝗜𝗠𝗔𝗧𝗘 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨 ✨
-
+✨ 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 𝗠𝗘𝗡𝗨 ✨
+╭──━[ *Arslan-MD v2.0* ]━━⬣
 ┆ ◦  🏃 nikal
 ┆ ◦  🤲 hold
 ┆ ◦  🤗 hug
