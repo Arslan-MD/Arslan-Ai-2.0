@@ -88,7 +88,27 @@ async function downloadSessionData() {
     }
 }
 
-async function start() {
+
+});
+        
+        Matrix.ev.on('creds.update', saveCreds);
+
+        Matrix.ev.on("messages.upsert", async chatUpdate => await Handler(chatUpdate, Matrix, logger));
+        Matrix.ev.on("call", async (json) => await Callupdate(json, Matrix));
+        Matrix.ev.on("group-participants.update", async (messag) => await GroupUpdate(Matrix, messag));
+
+        if (config.MODE === "public") {
+            Matrix.public = true;
+        } else if (config.MODE === "private") {
+            Matrix.public = false;
+        }
+
+        Matrix.ev.on('messages.upsert', async (chatUpdate) => {
+            try {
+                const mek = chatUpdate.messages[0];
+                console.log(mek);
+                if (!mek.key.fromMe && config.AUTO_REACT) {
+                    console.log(masync function start() {
   try {
     const { state, saveCreds } = await useMultiFileAuthState(sessionDir);
     const { version, isLatest } = await fetchLatestBaileysVersion();
@@ -112,7 +132,7 @@ async function start() {
     // ✅ Save session on update
     Matrix.ev.on('creds.update', saveCreds);
 
-    // ✅ Handle connection (open & reconnect)
+    // ✅ Handle connection updates
     Matrix.ev.on('connection.update', async (update) => {
       const { connection, lastDisconnect } = update;
 
@@ -120,23 +140,56 @@ async function start() {
         const botNumber = Matrix.user.id;
         config.BOT.NUMBER = botNumber;
         config.BOT.SUDO = botNumber;
+
         console.log("🤖 Bot connected as:", botNumber);
         console.log("👑 Owner (label):", config.BOT.OWNER);
+
+        if (initialConnection) {
+          console.log(chalk.green("Connected Successfully Arslan-Ai-2.0 🤍"));
+          await Matrix.sendMessage(Matrix.user.id, {
+            image: { url: "https://files.catbox.moe/2bhefn.png" },
+            caption: `> 𝐂ᴏɴɴᴇᴄᴛᴇ𝐃 𝐒ᴜᴄᴄᴇꜱꜱꜰᴜʟʟ𝐘 🩷🎀 .
+╭───❍「 *𝐂ᴏɴɴᴇᴄᴛᴇ𝐃 𝐁ᴏᴛ* 」
+┃ ꧁𓊈𒆜🅰🆁🆂🅻🅰🅽-🅰🅸-2.0𒆜𓊉꧂🫧
+╰───────────❍
+╭───❍「 *𝐁ᴏᴛ 𝐖ᴇʙ 𝐏ᴀɢᴇ* 」
+┃ [**Here**](https://arslanmdofficial.kesug.com/)
+╰───────────❍
+╭───❍「 *𝐉ᴏɪɴ 𝐂ʜᴀɴɴᴇ𝐋* 」
+┃ [**Here**](https://whatsapp.com/channel/0029VarfjW04tRrmwfb8x306)
+╰───────────❍
+╭───❍「 *𝐁ᴏᴛ 𝐎ᴡɴᴇ𝐑* 」
+┃ 🅰🆁🆂🅻🅰🅽-🅰🅸
+╰───────────❍
+╭───❍「 *𝐒ʏꜱᴛᴇᴍ 𝐒ᴛᴀᴛᴜꜱ* 」
+┃ ░░░░░░░░░░░░░░░░ 100%
+╰───────────❍
+╭───❍「 *𝐁ᴏᴛ 𝐏ʀᴇꜰɪ𝐱*」
+┃ ${prefix}
+╰───────────❍
+╭─❍「 *𝐀ᴜᴛᴏᴍᴀᴛɪᴏɴ 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ*」 
+┃ 𝘼𝙧𝙨𝙡𝙖𝙣𝙈𝘿 𝙊𝙛𝙛𝙞𝙘𝙞𝙖𝙡☠️
+╰───────────❍`
+          });
+          initialConnection = false;
+        } else {
+          console.log(chalk.blue("♻️ Connection reestablished."));
+        }
       }
 
       if (connection === 'close') {
         const reason = lastDisconnect?.error?.output?.statusCode;
         if (reason !== DisconnectReason.loggedOut) {
           console.log("🔁 Reconnecting...");
-          start(); // reconnect
+          start();
         } else {
           console.log("❌ Logged out.");
-          start(); // force restart
+          start();
         }
       }
     });
 
-    // ✅ Set PUBLIC or PRIVATE mode
+    // ✅ Set mode
     if (config.MODE === "public") {
       Matrix.public = true;
       console.log("📢 Bot is in PUBLIC mode.");
@@ -145,65 +198,16 @@ async function start() {
       console.log("🔒 Bot is in PRIVATE mode.");
     }
 
-    // 🔽 yahan baaki events aur plugin loader rahega...
+    // ✅ Baaki events and plugin loader (Handler etc.)
+    // Matrix.ev.on("messages.upsert", ...)
+    // Matrix.ev.on("group-participants.update", ...)
+    // etc...
 
   } catch (err) {
     console.error("❌ Failed to start bot:", err);
   }
 }
-    } else if (connection === 'open') {
-        if (initialConnection) {
-            console.log(chalk.green("Connected Successfully Arslan-Ai-2.0 🤍"));
-            Matrix.sendMessage(Matrix.user.id, { 
-                image: { url: "https://files.catbox.moe/2bhefn.png" }, 
-                caption: `> 𝐂ᴏɴɴᴇᴄᴛᴇ𝐃 𝐒ᴜᴄᴄᴇꜱꜱꜰᴜʟʟ𝐘 🩷🎀 .
-╭───❍「 *𝐂ᴏɴɴᴇᴄᴛᴇ𝐃 𝐁ᴏᴛ* 」
-┃ ꧁𓊈𒆜🅰🆁🆂🅻🅰🅽-🅰🅸-2.0𒆜𓊉꧂🫧
-╰───────────❍
-╭───❍「 *𝐁ᴏᴛ 𝐖ᴇʙ 𝐏ᴀɢᴇ* 」
-┃ [**Here**](https://arslanmdofficial.kesug.com/) visit web...!
-╰───────────❍
-╭───❍「 *𝐉ᴏɪɴ 𝐂ʜᴀɴɴᴇ𝐋* 」
-┃ [**Here**](https://whatsapp.com/channel/0029VarfjW04tRrmwfb8x306) to join..!
-╰───────────❍
-╭───❍「 *𝐁ᴏᴛ 𝐎ᴡɴᴇ𝐑* 」
-┃ 🅰🆁🆂🅻🅰🅽-🅰🅸
-╰───────────❍
-╭───❍「 *𝐒ʏꜱᴛᴇᴍ 𝐒ᴛᴀᴛᴜꜱ* 」
-┃ ░░░░░░░░░░░░░░░░ 100%
-╰───────────❍
-╭───❍「 *𝐁ᴏᴛ 𝐏ʀᴇꜰɪ𝐱*」 
-┃ 𝐂ᴏɴꜰɪɢᴜʀ𝐄 𝐘ᴏᴜʀ 𝐏ʀᴇꜰɪ𝐗 ${prefix}
-╰───────────❍
-╭─❍「 *𝐀ᴜᴛᴏᴍᴀᴛɪᴏ𝐍 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ*」 
-┃ 𝘼𝙧𝙨𝙡𝙖𝙣𝙈𝘿 𝙊𝙛𝙛𝙞𝙘𝙞𝙖𝙡☠️
-╰───────────❍`
-            });
-            initialConnection = false;
-        } else {
-            console.log(chalk.blue("♻️ Connection reestablished after restart."));
-        }
-    }
-});
-        
-        Matrix.ev.on('creds.update', saveCreds);
-
-        Matrix.ev.on("messages.upsert", async chatUpdate => await Handler(chatUpdate, Matrix, logger));
-        Matrix.ev.on("call", async (json) => await Callupdate(json, Matrix));
-        Matrix.ev.on("group-participants.update", async (messag) => await GroupUpdate(Matrix, messag));
-
-        if (config.MODE === "public") {
-            Matrix.public = true;
-        } else if (config.MODE === "private") {
-            Matrix.public = false;
-        }
-
-        Matrix.ev.on('messages.upsert', async (chatUpdate) => {
-            try {
-                const mek = chatUpdate.messages[0];
-                console.log(mek);
-                if (!mek.key.fromMe && config.AUTO_REACT) {
-                    console.log(mek);
+);
                     if (mek.message) {
                         const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
                         await doReact(randomEmoji, mek, Matrix);
