@@ -9,7 +9,7 @@ const config = {
   DEPLOY_DATE: process.env.DEPLOY_DATE || new Date().toISOString().split('T')[0],
   SESSION_ID: process.env.SESSION_ID || "ARSL~E2sBgKiI#YcHiFWxnIebf_Xkwgc-8zVdYBPTXaShKfoDpDtcz3ZA",
   PREFIX: process.env.PREFIX || '.',
-  MODE: (process.env.MODE === "public") ? "private" : "public",
+  MODE: "public", // force public mode always
   CRON_JOB: process.env.CRON_JOB || "0 */4 * * *", // Auto-restart every 4 hours
 
   // ================== 🤖 BOT IDENTITY ================== //
