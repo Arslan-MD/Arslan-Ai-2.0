@@ -41,6 +41,8 @@ const Handler = async (chatUpdate, sock, logger) => {
         const text = m.body.slice(prefix.length + cmd.length).trim();
         const botNumber = await sock.decodeJid(sock.user.id);
         const ownerNumber = config.BOT.NUMBER;
+        const rawMessage = m.message:m.body = m.message.conversation || m.message.extendedTextMessage?.text || m.message.imageMessage?.caption || '';
+     
         let isCreator = false;
 
         if (m.isGroup) {
