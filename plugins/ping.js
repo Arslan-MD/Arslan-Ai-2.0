@@ -28,20 +28,13 @@ const ping = async (m, sock) => {
       speedLabel = '⏱️ Medium'; indicator = '🟠';
     }
 
-    // ✅ Final Message
+    // ✅ Final Message with GitHub repo logo
     await sock.sendMessage(m.from, {
-      text: `🎯 *Pong!* ${pingTime}ms\n${indicator} *Speed:* ${speedLabel}\n🤖 *Bot:* ${config.BOT_NAME}\n👑 *Owner:* ${config.OWNER_NAME}\n🛠️ *Version:* ${config.VERSION || '2.0.0'}`,
+      image: { url: 'https://opengraph.githubassets.com/1/Arslan-MD/Arslan-Ai-2.0' },
+      caption: `🎯 *Pong!* ${pingTime}ms\n${indicator} *Speed:* ${speedLabel}\n🤖 *Bot:* ${config.BOT_NAME}\n👑 *Owner:* ${config.OWNER_NAME}\n🛠️ *Version:* ${config.VERSION || '2.0.0'}\n\n🔗 GitHub: https://github.com/Arslan-MD/Arslan-Ai-2.0`,
       contextInfo: {
         forwardingScore: 100,
-        isForwarded: true,
-        externalAdReply: {
-          title: `${config.BOT_NAME} - Ping Check`,
-          body: "Powered by ArslanMD Official",
-          mediaType: 1,
-          previewType: "PHOTO",
-          thumbnailUrl: "https://raw.githubusercontent.com/Arslan-MD/Arslan-Ai-2.0/V-2/media/menu.jpg",
-          sourceUrl: "https://github.com/Arslan-MD/Arslan-Ai-2.0"
-        }
+        isForwarded: true
       }
     }, { quoted: tempMsg });
 
