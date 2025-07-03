@@ -40,7 +40,7 @@ const Handler = async (chatUpdate, sock, logger) => {
         const cmd = m.body.startsWith(prefix) ? m.body.slice(prefix.length).split(' ')[0].toLowerCase() : '';
         const text = m.body.slice(prefix.length + cmd.length).trim();
         const botNumber = await sock.decodeJid(sock.user.id);
-        const ownerNumber = config.OWNER_NUMBER + '@s.whatsapp.net';
+        const ownerNumber = config.BOT.NUMBER;
         let isCreator = false;
 
         if (m.isGroup) {
