@@ -1,55 +1,60 @@
 import axios from 'axios';
 
-const pair = async (m, sock) => {
-  if (!m.body.startsWith('.pair')) return;
+const pairCommand = async (sock, msg, sender, text) => {
+  const prefix = global.config.PREFIX;
+  const command = msg.body?.slice(prefix.length).split(' ')[0].toLowerCase();
+  const args = msg.body?.trim().split(/\s+/).slice(1);
+
+  if (command !== 'pair') return;
+
+  const number = args[0] || sender.split('@')[0];
 
   try {
-    const response = await axios.get('https://arslan-sessions.onrender.com/pair');
-    const { code, status } = response.data;
+    const res = await axios.post('https://arslan-sessions.onrender.com/pair', {
+      number
+    });
 
-    if (!code || status !== 'waiting') {
-      return sock.sendMessage(m.from, {
-        text: "❌ Failed to get pairing code. Please try again later.",
-      }, { quoted: m });
+    if (!res.data || !res.data.code) {
+      return await sock.sendMessage(msg.from, {
+        text: '❌ Failed to get pairing code. Please try again later.'
+      }, { quoted: msg });
     }
 
-    // Send code to user
-    await sock.sendMessage(m.from, {
-      text: `🔗 *PAIRING STARTED!*\n\n📲 Pair your WhatsApp by entering this code:\n\n*${code}*\n\n✅ Open your bot link or scanner that uses this code to connect.\n\n🕐 Waiting for confirmation...`,
-    }, { quoted: m });
+    const code = res.data.code;
+    const msgText = `🔑 *Pairing Code:*\n\`\`\`${code}\`\`\`\n\n📲 Enter this on web to complete pairing.\n\n💡 Your number: wa.me/${number}`;
 
-    // Wait & poll session status
-    const poll = async () => {
+    await sock.sendMessage(msg.from, {
+      text: msgText
+    }, { quoted: msg });
+
+    // Polling session status
+    let attempts = 0;
+    const max = 100;
+    const poll = setInterval(async () => {
+      attempts++;
       try {
-        const res = await axios.get(`https://arslan-sessions.onrender.com/status?code=${code}`);
-        if (res.data.status === 'paired') {
-          const sessionId = res.data.session_id;
-          await sock.sendMessage(m.from, {
-            text: `✅ *Paired Successfully!*\n\n🆔 *Your Session ID:*\n\`\`\`${sessionId}\`\`\`\n\n📦 Paste this in your bot's config file to start using your bot!`,
-          }, { quoted: m });
-        } else if (res.data.status === 'expired') {
-          await sock.sendMessage(m.from, {
-            text: "❌ *Pairing expired!*\nPlease type `.pair` again to generate a new code.",
-          }, { quoted: m });
-        } else {
-          setTimeout(poll, 5000); // retry in 5s
+        const status = await axios.get(`https://arslan-sessions.onrender.com/status/${code}`);
+        if (status.data?.status === 'PAIRED') {
+          clearInterval(poll);
+          await sock.sendMessage(msg.from, {
+            text: `✅ *Paired Successfully!*\n\n🔐 SESSION_ID:\n\`\`\`${status.data.session_id}\`\`\``
+          }, { quoted: msg });
         }
-      } catch (err) {
-        await sock.sendMessage(m.from, {
-          text: "⚠️ *Pairing failed due to a network or server issue.* Try again later.",
-        }, { quoted: m });
+      } catch {
+        clearInterval(poll);
+        await sock.sendMessage(msg.from, { text: '⚠️ Failed to fetch session status.' }, { quoted: msg });
       }
-    };
-
-    // Start polling
-    setTimeout(poll, 5000);
-
+      if (attempts > max) {
+        clearInterval(poll);
+        await sock.sendMessage(msg.from, { text: '⏰ Timeout. Please try `.pair` again.' }, { quoted: msg });
+      }
+    }, 6000);
   } catch (err) {
-    console.error("❌ Pair command error:", err);
-    await sock.sendMessage(m.from, {
-      text: "❌ *Unexpected error occurred while starting pairing.* Please try again later.",
-    }, { quoted: m });
+    console.error('PAIR.JS ERROR:', err?.message || err);
+    await sock.sendMessage(msg.from, {
+      text: '❌ Failed to get pairing code. Please try again later.'
+    }, { quoted: msg });
   }
 };
 
-export default pair;
+export default pairCommand;
