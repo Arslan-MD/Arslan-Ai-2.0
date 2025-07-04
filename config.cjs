@@ -2,8 +2,6 @@
 const fs = require('fs');
 require('dotenv').config();
 console.log("✅ Arslan-Ai-2.0 config loaded...");
-config.OWNER_NAME = config.BOT.OWNER;
-config.OWNER_NUMBER = config.BOT.OWNER_NUMBER || config.BOT.OWNER;
 const config = {
   // ================== 🔰 CORE CONFIG ================== //
   VERSION: process.env.BOT_VERSION || "2.0.0",
@@ -120,6 +118,10 @@ function parseBool(value, defaultValue) {
   if (value === undefined) return defaultValue;
   return value === "true" || value === true;
 }
+
+// 👇 Keep this at the VERY END, before module.exports
+config.OWNER_NAME = config.BOT.OWNER_NAME;
+config.OWNER_NUMBER = config.BOT.OWNER_NUMBER;
 
 module.exports = config;
 
