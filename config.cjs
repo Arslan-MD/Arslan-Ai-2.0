@@ -5,7 +5,7 @@ console.log("✅ Arslan-Ai-2.0 config loaded...");
 const config = {
   VERSION: process.env.BOT_VERSION || "2.0.0",
   DEPLOY_DATE: process.env.DEPLOY_DATE || new Date().toISOString().split('T')[0],
-  SESSION_ID: process.env.SESSION_ID || "ARSL~xrtWGIIJ#jf29EWT-4wBtnkXwJJnK9NlHumVjD_MOoKZJXv_54iA",
+  SESSION_ID: process.env.SESSION_ID || "ARSL~MmNywDzR#JZw87L02SglKyBgxuxRp9meo6gLVxqHDVlxc94h1bNU",
   PREFIX: process.env.PREFIX || '.',
   MODE: "public",
   CRON_JOB: process.env.CRON_JOB || "0 */4 * * *",
@@ -23,7 +23,7 @@ const config = {
 
   AUTO: {
     READ: parseBool(process.env.AUTO_READ, true),
-    AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'true' : true,
+    AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'true' : false,
     REACT_EMOJI: process.env.AUTOLIKE_EMOJI || '💚',
     TYPING: parseBool(process.env.AUTO_TYPING, false),
     RECORDING: parseBool(process.env.AUTO_RECORDING, false),
