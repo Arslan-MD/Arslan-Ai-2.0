@@ -20,8 +20,7 @@
         
       },
     
- 
-    "STICKER_NAME": {
+     "STICKER_NAME": {
       "description": "type your sticker pack name.",
       "required": false,
       "value": "<| Arslan-Ai-2.0 🫧"
