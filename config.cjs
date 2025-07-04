@@ -102,3 +102,4 @@ function parseBool(value, defaultValue) {
 }
 
 module.exports = config;
+
