@@ -2,10 +2,10 @@
   "name": "Arslan-Ai-2.0",
   "version": "2",
   "description": "Arslan-MD inc",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name Arslan-Ai-2.0",
+    "start": "pm2 start server.js --deep-monitoring --attach --name Arslan-Ai-2.0",
     "stop": "pm2 stop Arslan-Ai-2.0",
     "restart": "pm2 restart Arslan-Ai-2.0"
   },
