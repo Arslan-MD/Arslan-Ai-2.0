@@ -12,4 +12,5 @@ services:
     regions:
       - fra
       - sin
+
       
