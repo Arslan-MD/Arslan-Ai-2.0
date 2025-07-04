@@ -108,16 +108,7 @@ async function start() {
                 return { conversation: "Arslan ai whatsapp user bot" };
             }
         });
-
-        Matrix.ev.on('connection.update', async (update) => {
-  const { connection } = update;
-  if (connection === 'open') {
-    const botNumber = Matrix.user.id;
-    config.BOT.NUMBER = botNumber;
-    console.log("🤖 Bot is ready with number:", botNumber);
-  }
-});
-
+        
 Matrix.ev.on('connection.update', (update) => {
     const { connection, lastDisconnect } = update;
     if (connection === 'close') {
