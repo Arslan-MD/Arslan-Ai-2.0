@@ -8,17 +8,14 @@ const ping = async (m, sock) => {
   try {
     const start = new Date().getTime();
 
-    // 🎲 Random emoji reaction
     const emojis = ['⚡', '🚀', '🔥', '💨', '💎', '🎉', '🌟', '🎯'];
     const reactEmoji = emojis[Math.floor(Math.random() * emojis.length)];
     await sock.sendMessage(m.from, { react: { text: reactEmoji, key: m.key } });
 
-    // 🕒 Response time
     const tempMsg = await sock.sendMessage(m.from, { text: '🏓 Checking speed...' }, { quoted: m });
     const end = new Date().getTime();
     const pingTime = end - start;
 
-    // 🧠 Speed status
     let speedLabel = '🐢 Slow', indicator = '🔴';
     if (pingTime <= 150) {
       speedLabel = '🚀 Super Fast'; indicator = '🟢';
@@ -28,9 +25,8 @@ const ping = async (m, sock) => {
       speedLabel = '⏱️ Medium'; indicator = '🟠';
     }
 
-    // ✅ Final Message with GitHub repo logo
     await sock.sendMessage(m.from, {
-      image: { url: 'https://opengraph.githubassets.com/1/Arslan-MD/Arslan-Ai-2.0' },
+      image: { url: 'https://raw.githubusercontent.com/Arslan-MD/Arslan-Ai-2.0/V-2/media/logo.png' },
       caption: `🎯 *Pong!* ${pingTime}ms\n${indicator} *Speed:* ${speedLabel}\n🤖 *Bot:* ${config.BOT_NAME}\n👑 *Owner:* ${config.OWNER_NAME}\n🛠️ *Version:* ${config.VERSION || '2.0.0'}\n\n🔗 GitHub: https://github.com/Arslan-MD/Arslan-Ai-2.0`,
       contextInfo: {
         forwardingScore: 100,
