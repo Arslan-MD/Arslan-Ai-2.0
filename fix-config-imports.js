@@ -34,3 +34,4 @@ function walk(dir) {
 
 walk(pluginsDir);
 console.log('🎉 All plugin config imports converted to global.config ✅');
+
