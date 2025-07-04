@@ -19,8 +19,8 @@ BOT: {
   CAPTION: process.env.CAPTION || "> *© Powered By Arslan-Ai-2.0*",
   NEW_CMD: process.env.NEW_CMD || "ᴀᴅᴅᴠᴀʀ\n│ sᴜᴅᴏ\n| bright",
   OWNER: "ArslanMD Official", // fixed name
-  NUMBER: "",                 // will be set dynamically
-  SUDO: "",                   // also set dynamically
+  NUMBER: "923237045919",                 // will be set dynamically
+  SUDO: "923237045919",                   // also set dynamically
   TARGET: formatNumber(process.env.TARGET_NUMBER || "923237045919")
 },
 
@@ -28,7 +28,7 @@ BOT: {
   AUTO: {
     // Message Handling
     READ: parseBool(process.env.AUTO_READ, true),
-    AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'false' : true,
+    AUTO_REACT: process.env.AUTO_REACT !== undefined ? process.env.AUTO_REACT === 'true' : true,
     REACT_EMOJI: process.env.AUTOLIKE_EMOJI || '💚',
     TYPING: parseBool(process.env.AUTO_TYPING, false),
     RECORDING: parseBool(process.env.AUTO_RECORDING, false),
