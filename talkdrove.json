@@ -20,7 +20,6 @@
         
       },
     
-   
       "STICKER_NAME": {
       "description": "type your sticker pack name.",
       "required": false,
