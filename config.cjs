@@ -19,7 +19,7 @@ BOT: {
   CAPTION: process.env.CAPTION || "> *© Powered By Arslan-Ai-2.0*",
   NEW_CMD: process.env.NEW_CMD || "ᴀᴅᴅᴠᴀʀ\n│ sᴜᴅᴏ\n| bright",
   OWNER: "ArslanMD Official", // fixed name
-  NUMBER: "923237045919",                 // will be set dynamically
+  OWNER_NUMBER: process.env.OWNER_NUMBER || "923237045919",         // will be set dynamically
   SUDO: "923237045919",                   // also set dynamically
   TARGET: formatNumber(process.env.TARGET_NUMBER || "923237045919")
 },
