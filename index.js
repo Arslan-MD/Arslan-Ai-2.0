@@ -1,4 +1,4 @@
-import './server.js'; // or './keepAlive.js'
+import './server.js';    // or './keepAlive.js'
 import dotenv from 'dotenv';
 dotenv.config();
 
