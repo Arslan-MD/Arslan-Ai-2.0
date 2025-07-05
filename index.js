@@ -26,7 +26,6 @@ import pkg from './lib/autoreact.cjs';
 const { emojis, doReact } = pkg;
 const prefix = process.env.PREFIX || config.PREFIX;
 const sessionName = "session";
-const app = express();
 const orange = chalk.bold.hex("#FFA500");
 const lime = chalk.bold.hex("#32CD32");
 let useQR = false;
