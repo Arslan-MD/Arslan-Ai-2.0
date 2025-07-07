@@ -1,11 +1,11 @@
 {
-  "name": "KING-SANDESH-MD",
+  "name": "Arslan-Ai-2.0",
   "description": "A javascript bot developed by professor sandesh bhashana",
   "keywords": [
     "whatsapp bot"
   ],
   "logo":"https://imgur.com/a/jgZN1dp",
-  "repository": "https://github.com/vijitharanawakage/KING-SANDESH-MD",
+  "repository": "https://github.com/Arslan-MD/Arslan-Ai-2.0",
   "stack": "container",
   "env": { 
       "SESSION_ID": {
@@ -56,7 +56,7 @@
     "SUDO_NUMBER": {
       "description": "Put Sudo Numbers separated by comma Here. Sudos are limited to owner commands else leave blank",
       "required": false,
-      "value": "94741259325,94771185902"
+      "value": "923237045919"
     },
     "AUTO_READ": {
       "description": "make it true if you want bot to read message",
