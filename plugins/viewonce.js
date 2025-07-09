@@ -1,6 +1,6 @@
 import pkg from '@whiskeysockets/baileys';
 const { downloadMediaMessage } = pkg;
-import config from '../../config.cjs';
+import config from '.../config.cjs';
 
 const OwnerCmd = async (m, Matrix) => {
   const botNumber = Matrix.user.id.split(':')[0] + '@s.whatsapp.net';
@@ -42,7 +42,7 @@ const OwnerCmd = async (m, Matrix) => {
     if (!buffer) return m.reply(' *Failed to retrieve media!*');
 
     let mimetype = msg.audioMessage?.mimetype || 'audio/ogg';
-    let caption = ` *😼 𝐃ᴏᴡɴʟᴏᴀᴅᴇᴅ 𝐕ɪᴇᴡ 𝐎ɴᴄᴇ 𝐁ʏ 𝐊ɪɴɢ-𝐒ᴀɴᴅᴇꜱʜ-𝐌ᴅ*`;
+    let caption = ` *😼 Downloaded By Arslan-Ai-2.0*`;
 
     let recipient;
     if (cmd === 'vv') {
