@@ -52,9 +52,9 @@ const config = {
   },
 
   AI: {
-    CHATBOT: parseBool(process.env.CHAT_BOT, false),
+    CHATBOT: parseBool(process.env.CHAT_BOT, true),
     CHATBOT_MODE: process.env.CHAT_BOT_MODE || "public",
-    LYDEA: parseBool(process.env.LYDEA, false),
+    LYDEA: parseBool(process.env.LYDEA, true),
     GEMINI: process.env.GEMINI_KEY || "AIzaSyCUPaxfIdZawsKZKqCqJcC-GWiQPCXKTDc",
     OPENAI: process.env.OPENAI_KEY || "",
     BRAINSHOP: process.env.BRAINSHOP_KEY || ""
