@@ -1,4 +1,4 @@
-import config from '../../config.cjs';
+import config from '../config.cjs';
 import axios from 'axios';
 
 const instagram = async (m, sock) => {
@@ -24,14 +24,14 @@ const instagram = async (m, sock) => {
       await sock.sendMessage(m.from, {
         video: { url: data.downloadUrl },
         mimetype: "video/mp4",
-        caption: "> *KING-SANDESH-MD-V2 INSTA VIDEO DOWNLOADER*",
+        caption: "> *Arslan-Ai-2.0 INSTA VIDEO DOWNLOADER*",
         contextInfo: {
           mentionedJid: [m.sender],
           forwardingScore: 999,
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: "120363402220977044@newsletter",
-            newsletterName: "<| 𝐊𝐈𝐍𝐆-𝐒𝐀𝐍𝐃𝐄𝐒𝐇-𝐌𝐃 𝐕❷🫧",
+            newsletterJid: "120363348739987203@newsletter",
+            newsletterName: "<| Arslan-Ai 𝐕❷🫧",
             serverMessageId: 143,
           },
         },
